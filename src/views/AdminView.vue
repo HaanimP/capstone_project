@@ -130,7 +130,7 @@
   
   <style scoped>
   .background {
-    background-image: url('https://i.ibb.co/rxm0PNY/nolan-issac-It0-DCa-CBr40-unsplash.jpg" alt="nolan-issac-It0-DCa-CBr40-unsplash');
+    background: #ffe5b4;
     height: 800px;
     background-size: cover;
     /* opacity: .99; */

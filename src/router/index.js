@@ -9,6 +9,8 @@ import LoginView from '../views/LoginView.vue'
 import RegProductView from '../views/RegProductView.vue'
 import RegisterUser from '../views/RegisterUser.vue'
 import UserUpdateView from '../views/UserUpdateView.vue'
+import UsersVIew from '@/views/UsersVIew.vue'
+import UpdateView from '@/views/UpdateView.vue'; 
 
 const routes = [
   {
@@ -37,6 +39,11 @@ const routes = [
     component: AdminView
   },
   {
+    path: '/admin/update/:id', 
+    name: 'update',
+    component: UpdateView 
+  },  
+  {
     path: '/contact',
     name: 'contact',
     component: ContactView
@@ -55,6 +62,11 @@ const routes = [
     path: '/register',
     name: 'register',
     component: RegisterUser
+  },
+  {
+    path: '/users',
+    name: 'Users',
+    component: UsersVIew
   },
   {
     path: '/users/update',
