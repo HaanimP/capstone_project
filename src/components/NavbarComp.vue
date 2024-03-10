@@ -17,7 +17,8 @@
                 <li><router-link to="/about">About Us</router-link></li>
                 <li><a href="#" class="dropdown-toggle" data-toggle="dropdown">Collection <span class="caret"></span></a>
                   <ul class="dropdown-menu">
-                    <li><router-link to="/collection">View our entire Collection</router-link></li>
+                    <li><router-link to="/products">View our entire Collection</router-link></li>
+                    <!-- <li><router-link :to="{ name: 'productView', params: { id: 1 }}">Product 1</router-link></li> -->
                     <li><router-link to="/jilbab">Jilbab Collection</router-link></li>
                     <li><router-link to="/satin">Satin Collection</router-link></li>
                     <li><router-link to="/chiffon">Chiffon Collection</router-link></li>

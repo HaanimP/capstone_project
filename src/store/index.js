@@ -5,7 +5,7 @@ import { useCookies } from 'vue3-cookies'
 const {cookies} = useCookies()
 import router from '@/router'
 import AuthenticateUser from '@/service/AuthenticUser'
-const lifeURL = 'https://coffee-shop-eomp-79iw.onrender.com/'
+const haanimsURL = 'https://capstone-project-h6pk.onrender.com'
 
 export default createStore({
   state: {
@@ -43,7 +43,7 @@ export default createStore({
       // console.log(payload);
       // console.log(context);
       try{
-        let {msg} = (await axios.post(`${lifeURL}users/register`, payload)).data
+        let {msg} = (await axios.post(`${haanimsURL}users/register`, payload)).data
         // if(msg) {
           console.log('msg: ' + msg);
           context.dispatch('fetchUsers')
@@ -67,7 +67,7 @@ export default createStore({
     },
     async fetchUsers(context) {
       try{
-        let {results} = (await axios.get(`${lifeURL}users`)).data
+        let {results} = (await axios.get(`${haanimsURL}users`)).data
         if(results) {
           context.commit('setUsers', results)
         }
@@ -82,7 +82,7 @@ export default createStore({
     },
     async fetchUser(context, payload) {
       try{
-        let {result} = (await axios.get(`${lifeURL}users/${payload.id}`)).data
+        let {result} = (await axios.get(`${haanimsURL}users/${payload.id}`)).data
         if(result) {
           context.commit('setUser', result)
         }else {
@@ -104,7 +104,7 @@ export default createStore({
     },
     async updateUser(context, payload) {
       try{
-        let {msg} = await axios.patch(`${lifeURL}users/update/${payload.userID}`, payload)
+        let {msg} = await axios.patch(`${haanimsURL}users/update/${payload.userID}`, payload)
         if(msg) {
           context.dispatch('fetchUsers')
           sweet({
@@ -125,7 +125,7 @@ export default createStore({
     },
     async deleteUser(context, payload) {
       try{
-        let {msg} = await axios.delete(`${lifeURL}users/${payload.prodID}`, payload)
+        let {msg} = await axios.delete(`${haanimsURL}users/${payload.prodID}`, payload)
         if(msg) {
           context.dispatch('fetchUsers')
           sweet({
@@ -148,7 +148,7 @@ export default createStore({
     // 
     async login(context, payload) {
       try{
-       const {msg, token, result} = (await axios.post(`${lifeURL}users/login`, payload)).data 
+       const {msg, token, result} = (await axios.post(`${haanimsURL}users/login`, payload)).data 
        if(result){
         context.commit('setUser', {msg, result})
         cookies.set('LegitUser', {
@@ -185,7 +185,7 @@ export default createStore({
     async fetchProducts(context) {
       try{
         let {results} = 
-        (await axios.get(`${lifeURL}products`)).data
+        (await axios.get(`${haanimsURL}/products`)).data
         if(results) {
           context.commit('setProducts', results)
         }
@@ -200,7 +200,7 @@ export default createStore({
     },
     async fetchProduct(context, payload) {
       try{
-        let {result} = (await axios.get(`${lifeURL}products/${payload.id}`)).data
+        let {result} = (await axios.get(`${haanimsURL}products/${payload.id}`)).data
         // console.log(result);
         if(result) {
           context.commit('setProduct', result)
@@ -225,7 +225,7 @@ export default createStore({
       console.log('payload :' +payload.prodID);
 
       try{
-        let {msg} = await (await axios.patch(`${lifeURL}products/update/${payload.prodID}`, payload)).data
+        let {msg} = await (await axios.patch(`${haanimsURL}products/update/${payload.prodID}`, payload)).data
        
         console.log('message : ' + msg);
         // if(msg) {
@@ -251,7 +251,7 @@ export default createStore({
     },
     async addProduct(context, payload) {
       try {
-        const msg = (await axios.post(`${lifeURL}products/addProduct`, payload)).data;
+        const msg = (await axios.post(`${haanimsURL}products/addProduct`, payload)).data;
         // const { msg } = response.data;
         
         if (msg) {
@@ -275,7 +275,7 @@ export default createStore({
     async deleteProduct(context, payload) {
       console.log(payload);
       try {
-        const response = await axios.delete(`${lifeURL}products/delete/${payload}`, payload);
+        const response = await axios.delete(`${haanimsURL}products/delete/${payload}`, payload);
         const msg = response.data;
         
         if (msg) {
