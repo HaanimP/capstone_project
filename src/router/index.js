@@ -1,6 +1,13 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
-import ProductView from '../views/ProductView.vue'
+import AboutView from '../views/AboutView.vue'
+import ProductsView from '../views/ProductsView.vue'
+import AdminView from '../views/AdminView.vue'
+import ContactView from '../views/ContactView.vue'
+import LoginView from '../views/LoginView.vue'
+import RegProductView from '../views/RegProductView.vue'
+import RegisterUser from '../views/RegisterUser.vue'
+import UserUpdateView from '../views/UserUpdateView.vue'
 
 const routes = [
   {
@@ -11,93 +18,43 @@ const routes = [
   {
     path: '/about',
     name: 'about',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
+    component: AboutView
   },
   {
-    path: '/products',
-    name: 'products',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/ProductsView.vue')
-  },
-  {
-    path: '/product/:id',
-    name: 'productView',
-    component: ProductView
+    path: '/collection',
+    name: 'collection',
+    component: ProductsView
   },
   {
     path: '/admin',
     name: 'admin',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/AdminView.vue')
-  }
-  ,
-  {
-    path: '/products/update/:id',
-    name: 'update',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/UpdateView.vue')
-  }
-  ,
+    component: AdminView
+  },
   {
     path: '/contact',
     name: 'contact',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/ContactView.vue')
-  } ,
-  
- {
-   path: '/users',
-   name: 'users',
-   // route level code-splitting
-   // this generates a separate chunk (about.[hash].js) for this route
-   // which is lazy-loaded when the route is visited.
-   component: () => import(/* webpackChunkName: "about" */ '../views/UsersVIew.vue')
- } ,
+    component: ContactView
+  },
   {
     path: '/login',
     name: 'login',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/LoginView.vue')
+    component: LoginView
   },
-
   {
     path: '/products/addProduct',
     name: 'product',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/RegProductView.vue')
-  } 
-   ,
+    component: RegProductView
+  },
   {
     path: '/register',
     name: 'register',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/RegisterUser.vue')
-  } ,
+    component: RegisterUser
+  },
   {
-    path: '/users/update/',
+    path: '/users/update',
     name: 'userUpdate',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/UserUpdateView.vue')
-  } ,
+    component: UserUpdateView
+  }
 ]
 
 const router = createRouter({
