@@ -1,74 +1,86 @@
 <template>
-    <div>
-        <h1>THIs is a login </h1>
+  <NavbarComp/>
+  <div>
+    <h1>Login</h1>
 
-
-        <div class="row d-flex justify-content-center" v-if="users">
-          <div class="container table-responsive py-5">
-            <table class="table table-hover" >
-              <thead>
-                <tr>
-                  <th scope="col">User No</th>
-                  <th scope="col">First Name</th>
-                  <th scope="col">Last Name</th>
-                  <th scope="col">Age</th>
-                  <th scope="col">Email</th>
-                  <th scope="col">Role</th>
-                  <th scope="col">Action</th>
-                </tr>
-              </thead>
-              <tbody v-for="userss in users" :key="userss.prodID">
-                <tr>
-                  <th scope="row">{{ userss.userID }}</th>
-                  <td>
-                    {{ userss.firstName }}
-                  </td>
-                  <td>{{ userss.lastName }}</td>
-                  <td>{{ userss.userAge }}</td>
-                  <td>{{ userss.emailAdd }}</td>
-                  <td>{{ userss.userRole }}</td>
-                  <td>
-                <button type="button" class="btn btn-success">edit</button>
-                <button type="button" class="btn btn-danger" onclick="deleteUser">delete</button>
-
-              </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
+    <div class="container mt-5">
+      <div class="row justify-content-center">
+        <div class="col-md-6">
+          <form @submit.prevent="loginUser">
+            <div class="mb-3">
+              <label for="email" class="form-label">Email address</label>
+              <input type="email" class="form-control" id="email" v-model="email" required>
+            </div>
+            <div class="mb-3">
+              <label for="password" class="form-label">Password</label>
+              <input type="password" class="form-control" id="password" v-model="password" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Login</button><br><br>
+          </form>
         </div>
-        <div class="row mx-auto" v-else>
-          <Spinner />
-        </div>
-
-        <div class="row">
-            <RouterLink to="/admin">
-
-                <button> back</button>
-            </RouterLink>
-        </div>
+      </div>
     </div>
+
+    <div class="row">
+      <router-link to="/admin">
+        <button>Back</button>
+      </router-link>
+    </div>
+  </div>
+  <FooterComp/>
 </template>
 
 <script>
-    export default {
-        name : 'LoginViewComp',
-
-        computed: {
-    users() {
-      return this.$store.state.users;
-    },
-
-
+import NavbarComp from '@/components/NavbarComp.vue';
+import FooterComp from '@/components/FooterComp.vue';
+export default {
+  name: 'LoginView',
+  components:{
+    NavbarComp,
+    FooterComp
   },
+  data() {
+    return {
+      email: '',
+      password: ''
+    };
+  },
+  methods: {
+    async loginUser() {
+      console.log('Email:', this.email);
+      console.log('Password:', this.password);
 
+      const newUser = {
+        userID: this.generateUserID(),
+        firstName: this.firstName, 
+        lastName: this.lastName, 
+        emailAdd: this.email,
+      };
 
-  mounted() {
-    this.$store.dispatch("fetchUsers")
+      this.$store.dispatch('addUser', newUser);
+
+      this.email = '';
+      this.password = '';
     },
+    generateUserID() {
+      return Math.floor(Math.random() * 1000) + 1;
     }
+  }
+};
 </script>
 
 <style scoped>
+.container {
+  max-width: 600px;
+}
 
+.btn-secondary {
+  background-color: #6c757d;
+  border-color: #6c757d;
+}
+
+.btn-secondary:hover {
+  background-color: #5a6268;
+  border-color: #545b62;
+}
 </style>
