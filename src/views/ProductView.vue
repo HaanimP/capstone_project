@@ -1,66 +1,77 @@
 <template>
-    <div class="row d-flex ">
-        <div v-if="product" class="ProdCont text-center mt-3">
-            <div class="justify-content-between boxx">
-                <div class=" ">
-                    <h1 class=""> {{ product.prodName }}</h1>
-                    
-                    <img :src="product.prodUrl" class="card-img-top img-box " alt="Pro">
-                    
-            
-                </div>
-            
-                <div class="">
-            
-                    <h5 class="w-25 mx-auto">{{ product.description }}</h5>
-                    
-                    <h3>R{{ product.productAmount }}</h3>
-            
-                </div>
-            
-
-            </div>
-            
-            <router-link to="/products" class="nav-link link-light"> <a class="btn btn-light  bg-black text-white m-3 " href="#"
-                    role="button">Go back</a></router-link>
+    <div class="row d-flex justify-content-center">
+      <div v-if="product" class="ProdCont mt-5">
+        <div class="card card-body justify-content-between boxx">
+          <div class="text-center">
+            <h1 class="mb-4">{{ product.prodName }}</h1>
+            <img :src="product.prodUrl" class="card-img-top img-box mb-4" alt="Product Image">
+            <p class="description">{{ product.description }}</p>
+          </div>
+          <div class="text-center">
+            <h3 class="price">R{{ product.productAmount }}</h3>
+            <router-link to="/products" class="btn btn-dark mt-4">Go back</router-link>
+          </div>
         </div>
-        <div class="row mx-auto" v-else>
-            <Spinner />
-        </div>
-
+      </div>
+      <div class="row mx-auto" v-else>
+        <Spinner />
+      </div>
     </div>
-</template>
-
-
-<script>
-import Spinner from '@/components/Spinner.vue';
-export default {
-    name : 'ProductView',
+  </template>
+  
+  <script>
+  import Spinner from '@/components/Spinner.vue';
+  
+  export default {
+    name: 'ProductView',
     components: {
-        Spinner
+      Spinner
     },
     computed: {
-        product() {
-            return this.$store.state.product
-        }
+      product() {
+        return this.$store.state.product;
+      }
     },
     mounted() {
-        this.$store.dispatch('fetchProduct', this.$route.params)
-    },
-
-
+      this.$store.dispatch('fetchProduct', this.$route.params);
+    }
+  }
+  </script>
+  
+  <style scoped>
+  .ProdCont {
+    max-width: 800px;
+  }
+  
+  .img-box {
+    width: 100%;
+    max-height: 300px;
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .boxx {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: #ffe5b4;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .description {
+  margin-bottom: 20px;
+  color: #343a40;
+  font-size: 18px; 
+  line-height: 1.6; 
 }
-</script>
-
-
-<style scoped>
-.img-box{
-    box-shadow: .2vw .2vw .2vw .2vw ;
-    height: 200px;
-    width: 200px;
-}
-.boxx{
-    box-shadow: .2vw .2vw .2vw .2vw;
-}
-
-</style>
+  
+  .price {
+    font-size: 24px;
+    font-weight: bold;
+    color: #212529;
+  }
+  </style>
+  
