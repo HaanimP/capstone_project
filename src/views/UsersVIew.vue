@@ -65,10 +65,7 @@
                     <th scope="col">User No</th>
                     <th scope="col">First Name</th>
                     <th scope="col">Last Name</th>
-                    <th scope="col">Age</th>
                     <th scope="col">Email</th>
-                    <th scope="col">Role</th>
-                    <th scope="col">Action</th>
                   </tr>
                 </thead>
                 <tbody v-for="userss in users" :key="userss.prodID">
@@ -78,9 +75,7 @@
                       {{ userss.firstName }}
                     </td>
                     <td>{{ userss.lastName }}</td>
-                    <td>{{ userss.userAge }}</td>
                     <td>{{ userss.emailAdd }}</td>
-                    <td>{{ userss.userRole }}</td>
                     <td>
                       <RouterLink :to="{name : 'userUpdate', params:{id:userss.userID}    }">
                         <button type="button" class="btn btn-success">Edit</button>
@@ -167,7 +162,7 @@
       border-radius: 2rem;
   }
   .background {
-    background-image: url('https://i.ibb.co/ncqwf8z/nathan-dumlao-Y3-Aqmbmt-LQI-unsplash.jpg" alt="nathan-dumlao-Y3-Aqmbmt-LQI-unsplash');
+    background: #ffe5b4;
     background-size: cover;
     background-blend-mode: soft-light;
     background-position: center center;
