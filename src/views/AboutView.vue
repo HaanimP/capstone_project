@@ -57,11 +57,11 @@
                 </template>
 
                   <template #cardHeader>
-                      <h4 class="card-title">Aakeefah Jones</h4>
+                      <h4 class="card-title">Aakeefah<br> Jones</h4>
                   </template>
 
                   <template #cardBody>
-                      <p class="card-text">Founder</p>
+                      <p class="card-text">Co-Founder</p>
                   </template>
   
         </Card>
@@ -77,7 +77,7 @@
                   </template>
 
                   <template #cardBody>
-                      <p class="card-text">Founder</p>
+                      <p class="card-text">Co-Founder</p>
                   </template>
   
         </Card>
@@ -93,7 +93,7 @@
                   </template>
 
                   <template #cardBody>
-                      <p class="card-text">Founder</p>
+                      <p class="card-text">Co-Founder</p>
                   </template>
   
         </Card>
@@ -102,10 +102,11 @@
 
     </div>
 
+  <FooterComponent/>
+
 </template>
 
 <script>
-// import Card from "@/components/Card.vue";
 import Card from "@/components/Card.vue";
 import NavbarComp from "@/components/NavbarComp.vue";
 import FooterComponent from '@/components/FooterComp.vue';
@@ -123,30 +124,30 @@ export default {
 <style scoped>
 .haanim-closet-description h1 {
   color: #FFFFFF;
-  font-family: 'Lobster', cursive; /* A more decorative font for headings */
-  font-size: 2.5rem; /* Adjust size for emphasis */
-  margin-bottom: 1rem; /* Spacing below the title */
-  padding: 1rem; /* Padding for better spacing */
-  background-color: rgba(183, 110, 121, 0.85); /* Slightly transparent background */
-  border-radius: 0.5rem; /* Rounded corners for a softer look */
-  max-width: 90%; /* Max width for better readability on wide screens */
-  margin: 1rem auto; /* Center align the block */
+  font-family: 'Lobster', cursive; 
+  font-size: 2.5rem; 
+  margin-bottom: 1rem; 
+  padding: 1rem;
+  background-color: rgba(183, 110, 121, 0.85); 
+  border-radius: 0.5rem; 
+  max-width: 90%; 
+  margin: 1rem auto; 
 }
 
 .descrip p {
-  color: #333; /* Darker text for better readability */
-  font-family: 'Roboto', sans-serif; /* Cleaner, more modern font */
-  line-height: 1.6; /* Improved line spacing for readability */
-  max-width: 90%; /* Restrict paragraph width for readability */
-  margin: 0 auto 1rem; /* Center paragraphs and add spacing */
-  padding: 0 1rem; /* Padding for mobile screens */
+  color: #333; 
+  font-family: 'Roboto', sans-serif; 
+  line-height: 1.6; 
+  max-width: 90%;
+  margin: 0 auto 1rem; 
+  padding: 0 1rem; 
 }
 
 .row {
   display: flex;
-  justify-content: center; /* Center content */
-  flex-wrap: wrap; /* Allow items to wrap on smaller screens */
-  margin: 2rem 0; /* Add vertical spacing */
+  justify-content: center;
+  flex-wrap: wrap; 
+  margin: 2rem 0; 
 }
 
 .row.d-flex.justify-content-center {
@@ -155,41 +156,40 @@ export default {
 
 .card {
   margin: 1rem;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Softer, wider shadow for a more refined look */
-  border: none; /* Remove default borders for a cleaner look */
-  border-radius: 0.5rem; /* Rounded corners for the card itself */
-  overflow: hidden; /* Ensures that child elements (like images) do not overflow the card's rounded corners */
-  background-color: #fff; /* Ensures cards are visually distinct against possibly non-white backgrounds */
-  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out; /* Smooth transition for hover effects */
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1); 
+  border: none;
+  border-radius: 0.5rem;
+  overflow: hidden; 
+  background-color: #fff; 
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out; 
 }
 
 .card:hover {
-  transform: scale(1.05); /* Slightly enlarges the card on hover for an interactive effect */
-  box-shadow: 0 8px 16px rgba(0,0,0,0.2); /* Enhances shadow on hover for a "lifting" effect */
+  transform: scale(1.05); 
+  box-shadow: 0 8px 16px rgba(0,0,0,0.2);
 }
 
 .card img {
-  width: 100%; /* Ensures the image covers the width of the card */
-  height: auto; /* Keeps the image's aspect ratio */
-  border-radius: 50%; /* Makes the image round */
-  object-fit: cover; /* Ensures the image covers the area without distortion */
-  margin-top: 3%; /* Optionally, adjust this value to ensure the round image is centered as you like */
-  border: 4px solid #fff; /* Adds a white border around the image for a more polished look */
+  width: 100%;
+  height: auto;
+  border-radius: 50%;
+  object-fit: cover; 
+  margin-top: 3%;
+  border: 4px solid #fff; 
 }
 
 .card h4, .card p {
-  color: #333; /* Darker text for card content */
+  color: #333; 
 }
 
 .card .card-text {
-  font-size: 0.9rem; /* Adjusts the font size for better readability */
-  color: #555; /* Slightly lighter color for the text */
+  font-size: 0.9rem; 
+  color: #555; 
 }
 
-/* Enhancements for small screens */
 @media (max-width: 768px) {
   .haanim-closet-description h1 {
-    font-size: 2rem; /* Smaller font size for small screens */
+    font-size: 2rem;
   }
 }
 
