@@ -37,16 +37,28 @@ userRouter.patch('/update/:id', bodyParser.json(),(req,res)=>{
     }
 })
 //add a user
-userRouter.post('/register',bodyParser.json(),(req,res)=>{
-    try{
-        users.createUser(req,res)
-    }catch(e){
-        res.json({
-            status:res.statusCode,
-            msg:'failed to add new user'
-        })
-    }
-})
+userRouter.post('/signup', async (req, res) => {
+    const { firstName, lastName, email, password, phone } = req.body; 
+    const hashedPassword = await bcrypt.hash(password, 8);
+    const username = email; 
+  
+    db.query(
+      'INSERT INTO users (username, email, password, firstName, lastName, phone) VALUES (?, ?, ?, ?, ?, ?)', 
+      [username, email, hashedPassword, firstName, lastName, phone], // Updated parameter list
+      (err, results) => {
+        if (err) {
+          return res.status(500).send(err);
+        }
+  
+        const token = jwt.sign({ id: results.insertId }, 'JWT_SECRET', { // Ensure 'JWT_SECRET' is properly managed and replaced with your actual secret
+          expiresIn: 86400 
+        });
+  
+        res.status(201).send({ token });
+      }
+    );
+  });
+  
 userRouter.delete('/deleteUsers',(req,res)=>{
     try{
         users.deleteUsers(req,res)
