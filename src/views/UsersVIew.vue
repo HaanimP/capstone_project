@@ -89,7 +89,7 @@
             </div>
           </div>
           <div class="row mx-auto" v-else>
-            <Spinner />
+            <SpinnerComp/>
           </div>
         </div>
       </div>

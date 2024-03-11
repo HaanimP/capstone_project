@@ -1,6 +1,6 @@
 <template>
   <NavbarComp/>
-  <div>
+  <div class="background">
     <h1>Login</h1>
 
     <div class="container mt-5">
@@ -70,6 +70,13 @@ export default {
 </script>
 
 <style scoped>
+.background {
+  background-image: url("https://i.ibb.co/BcYFfTg/login-image.jpg");
+  height: 600px;
+  background-size: cover;
+  background-blend-mode: soft-light;
+  background-position: center center;
+}
 .container {
   max-width: 600px;
 }
