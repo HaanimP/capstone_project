@@ -1,6 +1,6 @@
 <template>
+  <NavbarComp />
   <div class="background">
-     <NavbarComp />
     
     <div class="container">
 

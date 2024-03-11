@@ -1,7 +1,7 @@
 <template>
+    <NavbarComp />
     <div class="background">
       <div class="row">
-        <NavbarComp />
   
         <h1>Admin page</h1>
   
