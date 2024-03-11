@@ -1,6 +1,8 @@
 import express from "express"
 import bodyParser from "body-parser";
 import { users } from "../model/index.js";
+import bcrypt from 'bcrypt';
+import jwt from 'jsonwebtoken';
 import { verifyToken } from "../middleware/AuthenticateUser.js";
 
 const userRouter=express.Router()
