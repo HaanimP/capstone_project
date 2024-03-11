@@ -10,6 +10,7 @@ import RegProductView from '../views/RegProductView.vue'
 import RegisterUser from '../views/RegisterUser.vue'
 import UserUpdateView from '../views/UserUpdateView.vue'
 import UsersVIew from '@/views/UsersVIew.vue'
+import SignUpView from '@/views/SignUpView.vue'
 import UpdateView from '@/views/UpdateView.vue'; 
 
 const routes = [
@@ -52,6 +53,11 @@ const routes = [
     path: '/login',
     name: 'login',
     component: LoginView
+  },
+  {
+    path: '/signup', 
+    name: 'SignUp', 
+    component: SignUpView 
   },
   {
     path: '/products/addProduct',
