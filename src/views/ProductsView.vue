@@ -1,7 +1,7 @@
 <template>
+    <NavbarComp />
   <div class="background">
     <div class="row">
-      <NavbarComp />
     </div>
 
     <div class="container">
