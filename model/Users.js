@@ -4,7 +4,7 @@ import { createToken } from "../middleware/AuthenticateUser.js";
 class Users {
   fetchUsers(req, res) {
     const qry = `
-        SELECT userID,username,email,password,firstName,lastName,phone
+        SELECT userID,firstName,lastName,email,password
         FROM users
         `;
     db.query(qry, (err, results) => {
@@ -17,7 +17,7 @@ class Users {
   }
   fetchUser(req, res) {
     const qry = `
-    SELECT userID,username,email,password,firstName,lastName,phone
+    SELECT userID,firstName,lastName,email,password
     FROM users
         WHERE userID = ${req.params.id}
         `;
@@ -107,8 +107,8 @@ class Users {
 
   login(req, res) {
     const { emailAdd, userPwd } = req.body;
-    const qry = `SELECT userID, firstName, lastName, userAge, emailAdd , userPwd, userRole
-  FROM users
+    const qry = `SELECT uuserID,firstName,lastName,email,password
+    FROM users
   WHERE emailAdd='${emailAdd}'`;
 
     db.query(qry, async (err, result) => {
