@@ -1,89 +1,89 @@
-import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
-import AboutView from '../views/AboutView.vue'
-import ProductsView from '../views/ProductsView.vue'
-import ProductView from '../views/ProductView.vue'
-import AdminView from '../views/AdminView.vue'
-import ContactView from '../views/ContactView.vue'
-import LoginView from '../views/LoginView.vue'
-import RegProductView from '../views/RegProductView.vue'
-import RegisterUser from '../views/RegisterUser.vue'
-import UserUpdateView from '../views/UserUpdateView.vue'
-import UsersVIew from '@/views/UsersVIew.vue'
-import SignUpView from '@/views/SignUpView.vue'
-import UpdateView from '@/views/UpdateView.vue'; 
+import { createRouter, createWebHistory } from 'vue-router';
+import HomeView from '../views/HomeView.vue';
+import AboutView from '../views/AboutView.vue';
+import ProductsView from '../views/ProductsView.vue';
+import ProductView from '../views/ProductView.vue';
+import AdminView from '../views/AdminView.vue';
+import ContactView from '../views/ContactView.vue';
+import LoginView from '../views/LoginView.vue';
+import RegProductView from '../views/RegProductView.vue';
+import UserUpdateView from '../views/UserUpdateView.vue';
+import UsersVIew from '@/views/UsersVIew.vue';
+import ProfileView from '@/views/ProfileView.vue';
+import SignUpView from '@/views/SignUpView.vue';
+import UpdateView from '@/views/UpdateView.vue';
 
 const routes = [
   {
     path: '/',
     name: 'home',
-    component: HomeView
+    component: HomeView,
   },
   {
     path: '/about',
     name: 'about',
-    component: AboutView
+    component: AboutView,
   },
   {
     path: '/products',
     name: 'products',
-    component: ProductsView
+    component: ProductsView,
   },
   {
     path: '/products/:id',
     name: 'productView',
-    component: ProductView
-  },  
+    component: ProductView,
+  },
   {
     path: '/admin',
     name: 'admin',
-    component: AdminView
+    component: AdminView,
   },
   {
-    path: '/admin/update/:id', 
+    path: '/admin/update/:id',
     name: 'update',
-    component: UpdateView 
-  },  
+    component: UpdateView,
+  },
   {
     path: '/contact',
     name: 'contact',
-    component: ContactView
+    component: ContactView,
   },
   {
     path: '/login',
     name: 'login',
-    component: LoginView
+    component: LoginView,
   },
   {
-    path: '/signup', 
-    name: 'SignUp', 
-    component: SignUpView 
+    path: '/signup',
+    name: 'SignUp',
+    component: SignUpView,
+  },
+  {
+    path: '/profile',
+    name: 'Profile',
+    component: ProfileView,
   },
   {
     path: '/products/addProduct',
     name: 'product',
-    component: RegProductView
-  },
-  {
-    path: '/register',
-    name: 'register',
-    component: RegisterUser
+    component: RegProductView,
   },
   {
     path: '/users',
     name: 'Users',
-    component: UsersVIew
+    component: UsersVIew,
   },
   {
     path: '/users/update',
     name: 'userUpdate',
-    component: UserUpdateView
-  }
-]
+    component: UserUpdateView,
+  },
+];
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
-  routes
-})
+  routes,
+});
 
-export default router
+export default router;
