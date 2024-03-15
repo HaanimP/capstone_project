@@ -31,7 +31,7 @@
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #000;
-  background-color: #fff;
+  background-color: #B76E79;
 }
 
 /* Modal Styles */
