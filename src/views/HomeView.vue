@@ -1,19 +1,18 @@
 <template>
   <NavbarComp />
   <div class="background">
-    
-    <div class="container">
-
-      <div class=" push ">
-
-        <div class="col-3  pt-5">
-            <h1 class="greeting">السلام عليكم<br>
-            Hello</h1>
-            <h1 class="slogan">Elevate your style</h1>
-        </div>
+    <div class="video-container-left">
+      <div id="vimeo-player-left" style="position:relative; width:100%; height:0px; padding-bottom:56.250%"></div>
+      <div class="text-overlay-left">
+        <h1 class="greeting">السلام عليكم<br>Hello</h1>
       </div>
     </div>
-
+    <div class="image-container-right">
+      <img src="https://i.ibb.co/cN7x6bJ/background-7.jpg" alt="Background Image" class="background-image">
+      <div class="text-overlay-right">
+        <h1 class="slogan">Elevate your style</h1>
+      </div>
+    </div>
   </div>
   <FooterComponent/>
 </template>
@@ -23,65 +22,98 @@ import NavbarComp from '@/components/NavbarComp.vue';
 import FooterComponent from '@/components/FooterComp.vue';
 
 export default {
-  
   name: 'HomeView',
   components: {
     NavbarComp,
     FooterComponent
-}
+  },
+  mounted() {
+    const optionsLeft = {
+      id: 923649758, 
+      width: '640',
+      loop: true,
+      controls: false,
+    };
+
+    const playerLeft = new Vimeo.Player('vimeo-player-left', optionsLeft);
+    playerLeft.ready().then(() => {
+      console.log('Player Left is ready');
+      playerLeft.play().then(() => {
+        console.log('Player Left is playing');
+      }).catch((error) => {
+        console.error('Error playing Player Left:', error);
+      });
+    }).catch((error) => {
+      console.error('Error initializing Player Left:', error);
+    });
+  }
 }
 </script>
 
 <style scoped>
-@import url('https://fonts.googleapis.com/css2?family=Damion&family=Dancing+Script:wght@400..700&family=Kavoon&family=Lobster&family=Londrina+Solid&family=Roboto:wght@100;300&family=Salsa&display=swap');
-.greeting{
-  font-family: "Dancing Script", cursive;
-  font-weight: 800;
-  font-style: bolder;
-  font-size: 3rem;
+.background {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
 }
+
+.video-container-left,
+.image-container-right {
+  position: absolute;
+  width: 50%;
+  height: 100%;
+  top: 0;
+}
+
+.video-container-left {
+  left: 0;
+}
+
+.image-container-right {
+  right: 0;
+}
+
+.text-overlay-left,
+.text-overlay-right {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  z-index: 1;
+}
+
+.text-overlay-left {
+  top: 20%; /* Adjusted top position for greeting */
+  color: #fff;
+}
+
+.text-overlay-right {
+  top: 30%; /* Adjusted top position for slogan */
+  color: #000; /* Adjust text color for better visibility on the image */
+}
+
+.greeting,
 .slogan {
   font-family: "Dancing Script", cursive;
-  font-optical-sizing: auto;
-  font-weight: 800;
-  font-style: normal;
-  font-size: 3rem;
-  color: black; 
+  font-weight: 900; /* Increase font weight */
+  font-size: 4rem; /* Increase font size */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
-.push{
+
+.push {
   padding-top: 10rem;
 }
-.background{
-  background-image: url('https://i.ibb.co/cN7x6bJ/background-7.jpg');
-  height: 800px;
-  background-size: cover;
-  background-blend-mode: soft-light;
-  background-position: center center;
+
+.background-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
-/* Responsive adjustments for smaller screens */
 @media (max-width: 768px) {
   .greeting, .slogan {
-    font-size: 2rem; /* Adjust font size for smaller screens */
-  }
-
-  .push {
-    padding-top: 5rem; /* Reduce padding on top for smaller screens */
-  }
-}
-
-/* Further adjustments for very small screens */
-@media (max-width: 480px) {
-  .greeting {
-    font-size: 1.8rem;
-  }
-
-  .slogan {
-    font-size: 1.5rem; /* Even smaller to ensure it fits and looks good */
-  }
-
-  .push {
-    padding-top: 3rem; /* Less padding for very small screens */
+    font-size: 3rem; /* Adjust font size for smaller screens */
   }
 }
 </style>
