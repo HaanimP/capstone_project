@@ -6,7 +6,6 @@
         <h1>Admin page</h1>
   
         <div class="row d-flex justify-content-evenly">
-          <!-- must have sort and sear button displayed flex, -->
           <div class="col">
             <button type="button" class="btn btn-submit sort " @click="sortByName">Sort</button>
   
