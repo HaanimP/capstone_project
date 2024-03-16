@@ -29,14 +29,25 @@ export default createStore({
     setProduct(state, value) {
       state.product = value
     },
-    sortProductsByPrice(state) {
+   // Mutation to sort products by price
+  sortProductsByPrice(state, order) {
+    // Check if the order is specified and is either 'asc' or 'desc'
+    if (order === 'asc') {
       state.products.sort((a, b) => a.productAmount - b.productAmount);
-    },
+    } else if (order === 'desc') {
+      state.products.sort((a, b) => b.productAmount - a.productAmount);
+    }
+  },
   
-    // Mutation to sort products by name
-    sortProductsByName(state) {
+  // Mutation to sort products by name
+  sortProductsByName(state, order) {
+    // Check if the order is specified and is either 'asc' or 'desc'
+    if (order === 'asc') {
       state.products.sort((a, b) => a.prodName.localeCompare(b.prodName));
-    },
+    } else if (order === 'desc') {
+      state.products.sort((a, b) => b.prodName.localeCompare(a.prodName));
+    }
+  },
   },
   actions: {
     async register(context, payload) {
@@ -296,14 +307,13 @@ export default createStore({
         });
       }
     },
-    sortProductsByPrice(context) {
-      context.commit('sortProductsByPrice');
+    sortProductsByPrice(context, order) {
+      context.commit('sortProductsByPrice', order);
     },
   
-    sortProductsByName(context) {
-      context.commit('sortProductsByName');
+    sortProductsByName(context, order) {
+      context.commit('sortProductsByName', order);
     },
-    
   },
   modules: {
   }
