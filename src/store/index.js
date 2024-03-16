@@ -20,45 +20,40 @@ export default createStore({
   },
   mutations: {
     setUsers(state, value) {
-      state.users = value
+      state.users = value;
     },
     setUser(state, value) {
-      state.user = value
+      state.user = value;
     },
     setProducts(state, value) {
-      state.products = value
+      state.products = value;
     },
     setProduct(state, value) {
-      state.product = value
+      state.product = value;
     },
-   // Mutation to sort products by price
-  sortProductsByPrice(state, order) {
-    // Check if the order is specified and is either 'asc' or 'desc'
-    if (order === 'asc') {
-      state.products.sort((a, b) => a.productAmount - b.productAmount);
-    } else if (order === 'desc') {
-      state.products.sort((a, b) => b.productAmount - a.productAmount);
-    }
-  },
-  
-  // Mutation to sort products by name
-  sortProductsByName(state, order) {
-    // Check if the order is specified and is either 'asc' or 'desc'
-    if (order === 'asc') {
-      state.products.sort((a, b) => a.prodName.localeCompare(b.prodName));
-    } else if (order === 'desc') {
-      state.products.sort((a, b) => b.prodName.localeCompare(a.prodName));
-    }
-  },
-  setCartItems(state, items) {
-    state.cartItems = items;
-  },
-  addToCart(state, item) {
-    state.cartItems.push(item);
-  },
-  removeFromCart(state, index) {
-    state.cartItems.splice(index, 1);
-  },
+    sortProductsByPrice(state, order) {
+      if (order === 'asc') {
+        state.products.sort((a, b) => a.productAmount - b.productAmount);
+      } else if (order === 'desc') {
+        state.products.sort((a, b) => b.productAmount - a.productAmount);
+      }
+    },
+    sortProductsByName(state, order) {
+      if (order === 'asc') {
+        state.products.sort((a, b) => a.prodName.localeCompare(b.prodName));
+      } else if (order === 'desc') {
+        state.products.sort((a, b) => b.prodName.localeCompare(a.prodName));
+      }
+    },
+    setCartItems(state, items) {
+      state.cartItems = items;
+    },
+    addToCart(state, item) {
+      state.cartItems.push(item);
+    },
+    removeFromCart(state, index) {
+      state.cartItems.splice(index, 1);
+    },
   },
   actions: {
     async register(context, payload) {
@@ -88,84 +83,87 @@ export default createStore({
       }
     },
     async fetchUsers(context) {
-      try{
-        let {results} = (await axios.get(`${haanimsURL}/users`)).data
-        if(results) {
-          context.commit('setUsers', results)
+      try {
+        const { results } = (await axios.get(`${haanimsURL}/users`)).data;
+        if (results) {
+          context.commit('setUsers', results);
         }
-      }catch(e) {
+      } catch (e) {
         sweet({
           title: 'Error',
           text: 'An error occurred when retrieving users.',
           icon: "error",
           timer: 2000
-        }) 
+        });
       }
     },
+    
     async fetchUser(context, payload) {
-      try{
-        let {result} = (await axios.get(`${haanimsURL}users/${payload.id}`)).data
-        if(result) {
-          context.commit('setUser', result)
-        }else {
+      try {
+        const { result } = (await axios.get(`${haanimsURL}/users/${payload.id}`)).data;
+        if (result) {
+          context.commit('setUser', result);
+        } else {
           sweet({
             title: 'Retrieving a single user',
             text: 'User was not found',
             icon: "info",
             timer: 2000
-          }) 
+          });
         }
-      }catch(e) {
+      } catch (e) {
         sweet({
           title: 'Error',
           text: 'A user was not found.',
           icon: "error",
           timer: 2000
-        }) 
+        });
       }
     },
+    
     async updateUser(context, payload) {
-      try{
-        let {msg} = await axios.patch(`${haanimsURL}users/update/${payload.userID}`, payload)
-        if(msg) {
-          context.dispatch('fetchUsers')
+      try {
+        const { msg } = await axios.patch(`${haanimsURL}/users/update/${payload.id}`, payload);
+        if (msg) {
+          context.dispatch('fetchUsers');
           sweet({
             title: 'Update user',
             text: msg,
             icon: "success",
             timer: 2000
-          }) 
+          });
         }
-      }catch(e) {
+      } catch (e) {
         sweet({
           title: 'Error',
           text: 'An error occurred when updating a user.',
           icon: "success",
           timer: 2000
-        }) 
+        });
       }
     },
+    
     async deleteUser(context, payload) {
-      try{
-        let {msg} = await axios.delete(`${haanimsURL}users/${payload.prodID}`, payload)
-        if(msg) {
-          context.dispatch('fetchUsers')
+      try {
+        const { msg } = await axios.delete(`${haanimsURL}/users/${payload.id}`);
+        if (msg) {
+          context.dispatch('fetchUsers');
           sweet({
             title: 'Delete user',
             text: msg,
             icon: "success",
             timer: 2000
-          }) 
+          });
         }
-      }catch(e) {
+      } catch (e) {
         sweet({
           title: 'Error',
           text: 'An error occurred when deleting a user.',
           icon: "error",
           timer: 2000
-        }) 
+        });
       }
-    },
+    },    
 
     // 
     async login(context, payload) {
@@ -271,51 +269,43 @@ export default createStore({
         }) 
       }
     },
-    async addProduct(context, payload) {
+    async addProduct({ commit, dispatch }, payload) {
       try {
-        const msg = (await axios.post(`${haanimsURL}products/addProduct`, payload)).data;
-        // const { msg } = response.data;
-        
+        const response = await axios.post(`${haanimsURL}/products/addProduct`, payload);
+        const { msg, product } = response.data;
         if (msg) {
-          context.dispatch('fetchProducts'); // Fetch updated list of products after adding
-          sweet({
-            title: 'Product Added',
-            text: msg,
-            icon: 'success',
-            timer: 2000
-          });
+          dispatch('fetchProducts'); // Fetch updated list of products after adding
+          // Optionally commit mutation if needed
         }
+        return { success: true, msg };
       } catch (error) {
-        sweet({
-          title: 'Error',
-          text: 'An error occurred when adding a product.',
-          icon: 'error',
-          timer: 2000
-        });
+        return { success: false, msg: 'An error occurred when adding a product.' };
       }
     },
-    async deleteProduct(context, payload) {
-      console.log(payload);
+    async updateProduct({ commit, dispatch }, payload) {
       try {
-        const response = await axios.delete(`${haanimsURL}products/delete/${payload}`, payload);
-        const msg = response.data;
-        
+        const response = await axios.patch(`${haanimsURL}/products/update/${payload.prodID}`, payload);
+        const { msg } = response.data;
         if (msg) {
-          context.dispatch('fetchProduct'); // Fetch updated list of products after deletion
-          sweet({
-            title: 'Product Deleted',
-            text: msg,
-            icon: 'success',
-            timer: 2000
-          });
+          dispatch('fetchProducts'); // Fetch updated list of products after updating
+          // Optionally commit mutation if needed
         }
+        return { success: true, msg };
       } catch (error) {
-        sweet({
-          title: 'Error',
-          text: 'An error occurred when deleting the product.',
-          icon: 'error',
-          timer: 2000
-        });
+        return { success: false, msg: 'An error occurred when updating a product.' };
+      }
+    },
+    async deleteProduct({ commit, dispatch }, productId) {
+      try {
+        const response = await axios.delete(`${haanimsURL}/products/delete/${productId}`);
+        const { msg } = response.data;
+        if (msg) {
+          dispatch('fetchProducts'); // Fetch updated list of products after deletion
+          // Optionally commit mutation if needed
+        }
+        return { success: true, msg };
+      } catch (error) {
+        return { success: false, msg: 'An error occurred when deleting the product.' };
       }
     },
     sortProductsByPrice(context, order) {
@@ -324,33 +314,6 @@ export default createStore({
   
     sortProductsByName(context, order) {
       context.commit('sortProductsByName', order);
-    },
-    async fetchCartItems(context) {
-      try {
-        // Fetch cart items from the server
-        const response = await axios.get(`${haanimsURL}/cart`);
-        context.commit('setCartItems', response.data);
-      } catch (error) {
-        console.error('Error fetching cart items:', error);
-      }
-    },
-    async addToCart(context, item) {
-      try {
-        // Add item to the cart
-        await axios.post(`${haanimsURL}/cart/add`, item);
-        context.commit('addToCart', item);
-      } catch (error) {
-        console.error('Error adding item to cart:', error);
-      }
-    },
-    async removeFromCart(context, index) {
-      try {
-        // Remove item from the cart
-        await axios.delete(`${haanimsURL}/cart/remove/${index}`);
-        context.commit('removeFromCart', index);
-      } catch (error) {
-        console.error('Error removing item from cart:', error);
-      }
     },
   },
   modules: {
