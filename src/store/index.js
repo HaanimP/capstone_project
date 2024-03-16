@@ -2,9 +2,9 @@ import { createStore } from 'vuex'
 import axios from 'axios'
 import sweet from 'sweetalert'
 import { useCookies } from 'vue3-cookies'
-const {cookies} = useCookies()
 import router from '@/router'
-import AuthenticateUser from '@/service/AuthenticUser'
+import { createToken } from '@/service/AuthenticUser.js';
+const {cookies} = useCookies()
 const haanimsURL = 'https://capstone-project-h6pk.onrender.com'
 
 export default createStore({
