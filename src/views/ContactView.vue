@@ -4,13 +4,11 @@
     <div class="container">
       <div class="row">
         <div class="col-lg-6">
-          <h1 class="sub-title">Contact Me</h1>
-          <p><i class="fa-solid fa-paper-plane"></i> haanimpietersen@gmail.com</p>
-          <p><i class="fa-solid fa-phone"></i> 0714332419</p>
+          <h1 class="sub-title bold bigger-text">Contact Me</h1>
+          <p class="bold bigger-text"><i class="fa-solid fa-paper-plane"></i> haanimpietersen@gmail.com</p>
+          <p class="bold bigger-text"><i class="fa-solid fa-phone"></i> 0714332419</p>
           <div class="social-icons">
-            <a href="https://www.facebook.com/profile.php?id=100089705331205"><i class="fa-brands fa-facebook animate__animated animate__bounce"></i></a>
-            <a href="https://twitter.com/nimmie_13"><i class="fa-brands fa-twitter-square animate__animated animate__bounce"></i></a>
-            <a href="https://instagram.com/the.one.and.only.haanim?igshid=MzMyNGUyNmU2YQ=="><i class="fa-brands fa-instagram animate__animated animate__bounce"></i></a>
+            <a href="https://www.instagram.com/pietersen_haanim?igsh=MWpsZ3ljZ2lrZmZyOA=="><i class="fa-brands fa-instagram animate__animated animate__bounce"></i></a>
             <a href="https://za.linkedin.com/in/haanim-pietersen-172bb9264"><i class="fa-brands fa-linkedin animate__animated animate__bounce"></i></a>
           </div>
           <div class="map">
@@ -19,8 +17,8 @@
         </div>
         <div class="col-lg-6">
           <div class="contact-form">
-            <h2>Contact Us</h2>
-            <form>
+            <h2 class="bold bigger-text">Contact Us</h2>
+            <form v-on:submit.prevent="submitForm" action="https://formspree.io/f/xyyrdylw" method="POST">
               <!-- Name input -->
               <div class="form-group">
                 <input type="text" class="form-control" id="name" placeholder="Name" required />
@@ -39,25 +37,28 @@
               <!-- Checkbox -->
               <div class="form-check mb-4">
                 <input type="checkbox" class="form-check-input" id="sendCopy" checked />
-                <label class="form-check-label" for="sendCopy">Send me a copy of this message</label>
+                <label class="form-check-label bold bigger-text" for="sendCopy">Send me a copy of this message</label>
               </div>
 
               <!-- Submit button -->
-              <button type="submit" class="btn btn-primary btn-block">Send</button>
+              <button type="submit" class="btn btn-primary btn-block bold bigger-text">Send</button>
             </form>
           </div>
         </div>
       </div>
     </div>
   </div>
+  <FooterComponent/>
 </template>
 
 <script>
 import NavbarComp from '@/components/NavbarComp.vue';
+import FooterComponent from '@/components/FooterComp.vue'
 export default {
   name: 'ContactViewComp',
   components: {
-    NavbarComp
+    NavbarComp,
+    FooterComponent
   }
 }
 </script>
@@ -84,8 +85,8 @@ export default {
 }
 
 .sub-title {
-    font-size: 24px;
-    margin-bottom: 20px;
+  font-size: 24px;
+  margin-bottom: 20px;
 }
 
 .social-icons {
@@ -129,5 +130,13 @@ label {
 
 .btn-block {
   width: 100%;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.bigger-text {
+  font-size: 18px;
 }
 </style>
