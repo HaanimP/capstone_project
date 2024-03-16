@@ -8,5 +8,5 @@ let cart = new Cart()
 export{
     users,
     products, 
-    cart
+    Cart
 }

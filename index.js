@@ -5,6 +5,7 @@ import { errorHandling } from "./middleware/ErrorHandling.js";
 import path from 'path'
 import { config } from "dotenv";
 import cors from 'cors'
+import { cartRouter } from "./controllers/CartController.js";
 config()
 
 const app=express()
@@ -36,8 +37,54 @@ app.get('^/$', (req, res) => {
 // users
 app.use('/users',userRouter)
 
+app.post('/users', (req, res) => {
+    const userData = req.body;
+    users.addUser(userData, res);
+});
+
+app.patch('/users/:id', (req, res) => {
+    const userId = req.params.id;
+    const userData = req.body;
+    users.updateUser(userId, userData, res);
+});
+
+app.delete('/users/:id', (req, res) => {
+    const userId = req.params.id;
+    users.deleteUser(userId, res);
+});
+
 // Products 
 app.use('/products',productRouter)
+
+app.post('/products', (req, res) => {
+    products.addProduct(req, res);
+});
+
+app.patch('/products/:id', (req, res) => {
+    products.updateProduct(req, res);
+});
+
+app.delete('/products', (req, res) => {
+    products.deleteProducts(req, res);
+});
+
+app.delete('/products/:id', (req, res) => {
+    products.deleteProduct(req, res);
+});
+
+//cart
+app.use('/cart',cartRouter)
+
+app.get('/cart/:userId', (req, res) => {
+    const userId = req.params.userId;
+    cart.fetchCart(userId, res);
+});
+
+app.delete('/cart/:userId/:itemId', (req, res) => {
+    const userId = req.params.userId;
+    const itemId = req.params.itemId;
+    cart.deleteItemFromCart(userId, itemId, res);
+});
 
 app.use(errorHandling)
 app.listen(port,()=>{
