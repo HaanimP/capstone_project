@@ -85,25 +85,51 @@ class Users {
     });
   }
 
-  async updateUser(req, res) {
-    let data = req.body;
-    if (data?.userPwd) {
-      data.userPwd = await hash(data?.userPwd, 8);
-    }
-    const qry = `
-  UPDATE users 
-  SET ?
-  WHERE userID = ${req.params.id};`;
-
-    db.query(qry, [data], (err) => {
-      if (err) throw err;
-
-      res.json({
-        status: res.statusCode,
-        msg: "User updated!",
-      });
+  addUser(userData, res) {
+    const qry = `INSERT INTO users SET ?`;
+    db.query(qry, userData, (err, result) => {
+        if (err) {
+            console.error("Error adding user:", err);
+            return res.status(500).json({ error: "Failed to add user" });
+        }
+        console.log("User added successfully");
+        res.status(201).json({
+            status: res.statusCode,
+            msg: "New user was added",
+            userId: result.insertId
+        });
     });
-  }
+}
+
+updateUser(userId, userData, res) {
+    const qry = `UPDATE users SET ? WHERE userId = ?`;
+    db.query(qry, [userData, userId], (err, result) => {
+        if (err) {
+            console.error("Error updating user:", err);
+            return res.status(500).json({ error: "Failed to update user" });
+        }
+        console.log("User updated successfully");
+        res.json({
+            status: res.statusCode,
+            msg: "User is updated!"
+        });
+    });
+}
+
+deleteUser(userId, res) {
+    const qry = `DELETE FROM users WHERE userId = ?`;
+    db.query(qry, userId, (err, result) => {
+        if (err) {
+            console.error("Error deleting user:", err);
+            return res.status(500).json({ error: "Failed to delete user" });
+        }
+        console.log("User deleted successfully");
+        res.json({
+            status: res.statusCode,
+            msg: "User is deleted!"
+        });
+    });
+}
 
   login(req, res) {
     const { emailAdd, userPwd } = req.body;
