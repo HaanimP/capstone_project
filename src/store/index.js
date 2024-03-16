@@ -12,9 +12,11 @@ export default createStore({
     users: null,
     user: null,
     products: null,
-    product: null
+    product: null,
+    cartItems: [],
   },
   getters: {
+    cartItemCount: state => state.cartItems.length,
   },
   mutations: {
     setUsers(state, value) {
@@ -47,6 +49,15 @@ export default createStore({
     } else if (order === 'desc') {
       state.products.sort((a, b) => b.prodName.localeCompare(a.prodName));
     }
+  },
+  setCartItems(state, items) {
+    state.cartItems = items;
+  },
+  addToCart(state, item) {
+    state.cartItems.push(item);
+  },
+  removeFromCart(state, index) {
+    state.cartItems.splice(index, 1);
   },
   },
   actions: {
@@ -313,6 +324,33 @@ export default createStore({
   
     sortProductsByName(context, order) {
       context.commit('sortProductsByName', order);
+    },
+    async fetchCartItems(context) {
+      try {
+        // Fetch cart items from the server
+        const response = await axios.get(`${haanimsURL}/cart`);
+        context.commit('setCartItems', response.data);
+      } catch (error) {
+        console.error('Error fetching cart items:', error);
+      }
+    },
+    async addToCart(context, item) {
+      try {
+        // Add item to the cart
+        await axios.post(`${haanimsURL}/cart/add`, item);
+        context.commit('addToCart', item);
+      } catch (error) {
+        console.error('Error adding item to cart:', error);
+      }
+    },
+    async removeFromCart(context, index) {
+      try {
+        // Remove item from the cart
+        await axios.delete(`${haanimsURL}/cart/remove/${index}`);
+        context.commit('removeFromCart', index);
+      } catch (error) {
+        console.error('Error removing item from cart:', error);
+      }
     },
   },
   modules: {

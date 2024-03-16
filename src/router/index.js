@@ -12,6 +12,7 @@ import UsersVIew from '@/views/UsersVIew.vue';
 import ProfileView from '@/views/ProfileView.vue';
 import SignUpView from '@/views/SignUpView.vue';
 import UpdateView from '@/views/UpdateView.vue';
+import CartView from '@/views/CartView.vue';
 
 const routes = [
   {
@@ -33,6 +34,11 @@ const routes = [
     path: '/products/:id',
     name: 'productView',
     component: ProductView,
+  },
+  {
+    path: '/cart',
+    name: 'cart',
+    component: CartView,
   },
   {
     path: '/admin',
