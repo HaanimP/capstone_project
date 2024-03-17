@@ -7,6 +7,7 @@ import path from 'path'
 import { config } from "dotenv";
 import cors from 'cors'
 import { cartRouter } from "./controllers/CartController.js";
+import { authenticateUser } from './middleware/AuthenticateUser.js';
 config()
 
 const app=express()
@@ -80,6 +81,17 @@ app.delete('/cart/:userId/:itemId', (req, res) => {
     const itemId = req.params.itemId;
     cart.deleteItemFromCart(userId, itemId, res);
 });
+
+app.get('/admin', authenticateUser, (req, res) => {
+    // Check if user is authorized to access this route
+    if (req.user.isAdmin) {
+      // Return admin page data
+      res.json({ message: 'Welcome to the admin page' });
+    } else {
+      // User is not authorized to access this resource, send error response
+      return res.status(403).json({ message: 'Unauthorized' });
+    }
+  });
 
 app.use(errorHandling)
 app.listen(port,()=>{

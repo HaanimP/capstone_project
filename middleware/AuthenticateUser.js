@@ -15,27 +15,41 @@ function createToken(user) {
     });
 }
 
-function verifyToken(req, res, next) {
+function authenticateUser(req, res, next) {
     // Retrieve a token from the request headers
     const token = req.headers['authorization'];
 
     if (token) {
         try {
             // Verify the token using the SECRET_KEY from environment variables
-            jwt.verify(token, process.env.JWT_SECRET);
-            next(); // Token is valid, proceed to the next middleware
+            const decoded = jwt.verify(token, secretKey);
+            // Check if decoded email matches one of the allowed emails
+            const allowedEmails = ['haanimpietersen@gmail.com', 'hoosenammara@gmail.com', 'aakeefahj@gmail.com', 'nishaatgafieldien@gmail.com'];
+            if (allowedEmails.includes(decoded.email)) {
+                // User is authorized, proceed to the next middleware
+                req.user = decoded; // Attach user information to the request object
+                next();
+            } else {
+                // User is not authorized to access this resource, send error response
+                res.status(403).json({
+                    status: res.statusCode,
+                    msg: "Unauthorized"
+                });
+            }
         } catch (error) {
-            res?.json({
+            // Token verification failed, send error response
+            res.status(401).json({
                 status: res.statusCode,
-                msg: "Please provide the correct credentials"
+                msg: "Invalid token"
             });
         }
     } else {
-        res?.json({
+        // No token provided, send error response
+        res.status(401).json({
             status: res.statusCode,
             msg: "Please provide a token"
         });
     }
 }
 
-export { createToken, verifyToken };
+export { createToken, authenticateUser };
