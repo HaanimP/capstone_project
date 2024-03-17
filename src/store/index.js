@@ -1,10 +1,11 @@
-import { createStore } from 'vuex'
-import axios from 'axios'
-import sweet from 'sweetalert'
-import { useCookies } from 'vue3-cookies'
-import router from '@/router'
-const {cookies} = useCookies()
-const haanimsURL = 'https://capstone-project-h6pk.onrender.com'
+import { createStore } from 'vuex';
+import axios from 'axios';
+import sweet from 'sweetalert';
+import { useCookies } from 'vue3-cookies';
+import router from '@/router';
+
+const { cookies } = useCookies();
+const haanimsURL = 'https://capstone-project-h6pk.onrender.com';
 
 export default createStore({
   state: {
@@ -13,9 +14,11 @@ export default createStore({
     products: null,
     product: null,
     cartItems: [],
+    token: '', // Added token state
   },
   getters: {
     cartItemCount: state => state.cartItems.length,
+    isAuthenticated: state => !!state.token, // Added isAuthenticated getter
   },
   mutations: {
     setUsers(state, value) {
@@ -53,28 +56,43 @@ export default createStore({
     removeFromCart(state, index) {
       state.cartItems.splice(index, 1);
     },
+    setToken(state, token) {
+      state.token = token;
+      localStorage.setItem('token', token); // Save token to localStorage
+    },
+    logout(state) {
+      state.user = null;
+      state.token = '';
+      localStorage.removeItem('token'); // Remove token from localStorage
+    },
   },
   actions: {
-    async register(context, payload) {
+    async signup({ commit }, userData) {
       try {
-        const { msg } = (await axios.post(`${haanimsURL}/users/register`, payload)).data;
-        if (msg) {
-          sweet({
-            title: 'Registration',
-            text: msg,
-            icon: 'success',
-            timer: 2000
-          });
-          router.push({ name: 'login' });
-        }
+        const response = await axios.post(`${haanimsURL}/users/register`, userData);
+        const { token, msg } = response.data;
+        commit('setToken', token);
+        console.log('Signup successful:', msg);
+        return { success: true, msg };
       } catch (error) {
-        sweet({
-          title: 'Error',
-          text: 'Failed to register. Please try again later.',
-          icon: 'error',
-          timer: 2000
-        });
+        console.error('Signup error:', error);
+        return { success: false, msg: 'Signup failed. Please try again.' };
       }
+    },
+    async login({ commit }, { email, password }) {
+      try {
+        const response = await axios.post(`${haanimsURL}/users/login`, { email, password });
+        const { token, msg } = response.data;
+        commit('setToken', token);
+        console.log('Login successful:', msg);
+        return { success: true, msg };
+      } catch (error) {
+        console.error('Login error:', error);
+        return { success: false, msg: 'Login failed. Please check your credentials and try again.' };
+      }
+    },
+    logout({ commit }) {
+      commit('logout');
     },
     async fetchUsers(context) {
       try {
@@ -158,38 +176,6 @@ export default createStore({
         });
       }
     },    
-
-    // 
-    async login(context, payload) {
-      try {
-        const { msg, token, result } = (await axios.post(`${haanimsURL}/users/login`, payload)).data;
-        if (result) {
-          context.commit('setUser', { msg, result });
-          createToken(token); // Assuming createToken function sets the token globally
-          sweet({
-            title: msg,
-            text: `Welcome back, ${result?.firstName} ${result?.lastName}`,
-            icon: 'success',
-            timer: 2000
-          });
-          router.push({ name: 'home' });
-        } else {
-          sweet({
-            title: 'Info',
-            text: msg,
-            icon: 'info',
-            timer: 2000
-          });
-        }
-      } catch (error) {
-        sweet({
-          title: 'Error',
-          text: 'Failed to login. Please try again later.',
-          icon: 'error',
-          timer: 2000
-        });
-      }
-    },
     async fetchProducts(context) {
       try{
         let {results} = 

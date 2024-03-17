@@ -3,26 +3,26 @@
   <div class="background">
     <div class="container">
       <div class="text">Sign Up</div>
-      <form action="#">
+      <form @submit.prevent="signup">
         <div class="data">
           <label for="firstName">First Name</label>
-          <input type="text" name="firstName" id="firstName">
+          <input type="text" name="firstName" id="firstName" v-model="firstName">
         </div>
         <div class="data">
           <label for="lastName">Last Name</label>
-          <input type="text" name="lastName" id="lastName">
+          <input type="text" name="lastName" id="lastName" v-model="lastName">
         </div>
         <div class="data">
           <label for="email">Email</label>
-          <input type="email" name="email" id="email">
+          <input type="email" name="email" id="email" v-model="email">
         </div>
         <div class="data">
           <label for="password">Password</label>
-          <input type="password" name="password" id="password">
+          <input type="password" name="password" id="password" v-model="password">
         </div>
         <div class="data">
           <label for="confirmPassword">Confirm Password</label>
-          <input type="password" name="password" id="confirmPassword">
+          <input type="password" name="password" id="confirmPassword" v-model="confirmPassword">
         </div>
         <div class="btn">
           <button type="submit">Sign Up </button>
@@ -44,7 +44,7 @@
 <script>
 import NavbarComp from '@/components/NavbarComp.vue';
 import FooterComp from '@/components/FooterComp.vue';
-import { mapActions } from 'vuex';
+import axios from 'axios';
 
 export default {
   name: 'SignUpView',
@@ -62,35 +62,24 @@ export default {
     };
   },
   methods: {
-    ...mapActions(['register']), // Map the register action from Vuex store
-    async registerUser() {
-      // Basic client-side validation for password match
-      if (this.password !== this.confirmPassword) {
-        alert("Passwords do not match.");
-        return;
+    async signup() {
+      try {
+        const response = await axios.post('https://capstone-project-h6pk.onrender.com/users/register', {
+          firstName: this.firstName,
+          lastName: this.lastName,
+          email: this.email,
+          password: this.password
+        });
+        console.log('Signup successful');
+        // Optionally, redirect the user to the login page after successful signup
+        this.$router.push('/login');
+      } catch (error) {
+        console.error('Signup error:', error);
+        // Handle signup error, e.g., display an error message to the user
       }
-
-      // Prepare payload for registration
-      const payload = {
-        firstName: this.firstName,
-        lastName: this.lastName,
-        email: this.email,
-        password: this.password,
-        // Add other fields if needed
-      };
-
-      // Call Vuex action to register user
-      await this.register(payload);
-
-      // Clear form fields after successful registration
-      this.firstName = '';
-      this.lastName = '';
-      this.email = '';
-      this.password = '';
-      this.confirmPassword = '';
     }
-  } 
-};
+  }
+}
 </script>
 
 <style scoped>
