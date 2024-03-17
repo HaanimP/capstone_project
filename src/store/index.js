@@ -3,7 +3,6 @@ import axios from 'axios'
 import sweet from 'sweetalert'
 import { useCookies } from 'vue3-cookies'
 import router from '@/router'
-import { createToken } from '@/service/AuthenticUser.js';
 const {cookies} = useCookies()
 const haanimsURL = 'https://capstone-project-h6pk.onrender.com'
 
@@ -57,29 +56,24 @@ export default createStore({
   },
   actions: {
     async register(context, payload) {
-      // console.log(payload);
-      // console.log(context);
-      try{
-        let {msg} = (await axios.post(`${haanimsURL}users/register`, payload)).data
-        // if(msg) {
-          console.log('msg: ' + msg);
-          context.dispatch('fetchUsers')
+      try {
+        const { msg } = (await axios.post(`${haanimsURL}/users/register`, payload)).data;
+        if (msg) {
           sweet({
             title: 'Registration',
             text: msg,
-            icon: "success",
+            icon: 'success',
             timer: 2000
-          }) 
-          //  
-          router.push({name: 'login'})
-        // }
-      }catch(e) {
+          });
+          router.push({ name: 'login' });
+        }
+      } catch (error) {
         sweet({
           title: 'Error',
-          text: 'Please try again later',
-          icon: "error",
+          text: 'Failed to register. Please try again later.',
+          icon: 'error',
           timer: 2000
-        }) 
+        });
       }
     },
     async fetchUsers(context) {
@@ -167,40 +161,34 @@ export default createStore({
 
     // 
     async login(context, payload) {
-      try{
-       const {msg, token, result} = (await axios.post(`${haanimsURL}users/login`, payload)).data 
-       if(result){
-        context.commit('setUser', {msg, result})
-        cookies.set('LegitUser', {
-          msg, token, result
-        })
-        AuthenticateUser.applyToken(token)
-        sweet({
-          title: msg,
-          text: `Welcome back, 
-          ${result?.firstName} ${result?.lastName}`,
-          icon: "success",
-          timer: 2000
-        })
-          router.push({name: 'home'})
-        }else {
+      try {
+        const { msg, token, result } = (await axios.post(`${haanimsURL}/users/login`, payload)).data;
+        if (result) {
+          context.commit('setUser', { msg, result });
+          createToken(token); // Assuming createToken function sets the token globally
           sweet({
-            title: 'info',
-            text: msg,
-            icon: "info",
+            title: msg,
+            text: `Welcome back, ${result?.firstName} ${result?.lastName}`,
+            icon: 'success',
             timer: 2000
-          })
+          });
+          router.push({ name: 'home' });
+        } else {
+          sweet({
+            title: 'Info',
+            text: msg,
+            icon: 'info',
+            timer: 2000
+          });
         }
-      }catch(e) {
+      } catch (error) {
         sweet({
           title: 'Error',
-          text: 'Failed to login.',
-          icon: "error",
+          text: 'Failed to login. Please try again later.',
+          icon: 'error',
           timer: 2000
-        })
+        });
       }
-      
-
     },
     async fetchProducts(context) {
       try{

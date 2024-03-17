@@ -44,7 +44,7 @@
 <script>
 import NavbarComp from '@/components/NavbarComp.vue';
 import FooterComp from '@/components/FooterComp.vue';
-import { createToken } from '@/service/AuthenticUser.js'; // Import the createToken function
+import { mapActions } from 'vuex';
 
 export default {
   name: 'SignUpView',
@@ -59,63 +59,37 @@ export default {
       email: '',
       password: '',
       confirmPassword: '',
-      errorMessage: ''
     };
   },
   methods: {
-  async registerUser() {
-    // Basic client-side validation for password match
-    if(this.password !== this.confirmPassword) {
-      alert("Passwords do not match.");
-      return;
-    }
-
-    // Preparing the user data for the signup request
-    const userData = {
-      firstName: this.firstName,
-      lastName: this.lastName,
-      email: this.email, // Assuming the backend expects 'email' not 'emailAdd'
-      password: this.password,
-      // Add 'phone' here if your backend also expects it
-    };
-
-    try {
-      const response = await fetch(`https://capstone-project-h6pk.onrender.com/signup`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(userData)
-      });
-
-      if (!response.ok) {
-        throw new Error('Signup failed');
+    ...mapActions(['register']), // Map the register action from Vuex store
+    async registerUser() {
+      // Basic client-side validation for password match
+      if (this.password !== this.confirmPassword) {
+        alert("Passwords do not match.");
+        return;
       }
 
-      // Signup successful, now create the token
-      const data = await response.json();
+      // Prepare payload for registration
+      const payload = {
+        firstName: this.firstName,
+        lastName: this.lastName,
+        email: this.email,
+        password: this.password,
+        // Add other fields if needed
+      };
 
-      // Call the createToken function from AuthenticUser service
-      const tokenResult = createToken(userData);
+      // Call Vuex action to register user
+      await this.register(payload);
 
-      // Show a popup confirming successful signup
-      window.alert('You were successfully signed up!');
-
-      // Redirect the user to the login form
-      this.$router.push('/login'); 
-
-      // Optionally, you can handle the token result or clear the form fields here
+      // Clear form fields after successful registration
       this.firstName = '';
       this.lastName = '';
       this.email = '';
       this.password = '';
       this.confirmPassword = '';
-    } catch (error) {
-      this.errorMessage = 'Signup error. Please try again.';
-      console.error('Error during signup:', error);
     }
   } 
-}
 };
 </script>
 
