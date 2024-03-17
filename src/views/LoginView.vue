@@ -1,32 +1,31 @@
 <template>
   <NavbarComp/>
   <div class="background">
-
     <div class="container">
       <div class="text">Login</div>
-      <form action="#">
+      <form @submit.prevent="loginUser">
         <div class="data">
-            <label for="email">Email</label>
-            <input type="email" name="email" id="email">
+          <label for="email">Email</label>
+          <input type="email" name="email" id="email" v-model="email">
         </div>
         <div class="data">
-            <label for="password">Password</label>
-            <input type="password" name="password" id="password">
+          <label for="password">Password</label>
+          <input type="password" name="password" id="password" v-model="password">
         </div>
         <div class="forgot-pass">
-            <a href="#">Forgot Password? </a>
+          <a href="#">Forgot Password?</a>
         </div>
         <div class="btn">
-            <button type="submit">Login </button>
+          <button type="submit">Login</button>
         </div>
         <div class="signup-link">Not a member?
-            <router-link to="/signup">Signup now </router-link>
+          <router-link to="/signup">Signup now</router-link>
         </div><br>
         <div class="row">
-      <router-link to="/login">
-        <button>Back</button>
-      </router-link>
-    </div>
+          <router-link to="/login">
+            <button>Back</button>
+          </router-link>
+        </div>
       </form>
     </div>
   </div>
@@ -36,9 +35,11 @@
 <script>
 import NavbarComp from '@/components/NavbarComp.vue';
 import FooterComp from '@/components/FooterComp.vue';
+import axios from 'axios';
+
 export default {
   name: 'LoginView',
-  components:{
+  components: {
     NavbarComp,
     FooterComp
   },
@@ -50,26 +51,24 @@ export default {
   },
   methods: {
     async loginUser() {
-      console.log('Email:', this.email);
-      console.log('Password:', this.password);
-
-      const newUser = {
-        userID: this.generateUserID(),
-        firstName: this.firstName, 
-        lastName: this.lastName, 
-        emailAdd: this.email,
-      };
-
-      this.$store.dispatch('addUser', newUser);
-
-      this.email = '';
-      this.password = '';
-    },
-    generateUserID() {
-      return Math.floor(Math.random() * 1000) + 1;
+      try {
+        const response = await axios.post('https://capstone-project-h6pk.onrender.com/users/login', {
+          email: this.email,
+          password: this.password
+        });
+        // Handle successful login, e.g., save token to localStorage
+        localStorage.setItem('token', response.data.token);
+        console.log('Login successful');
+        // Optionally, redirect the user to another page
+        this.$router.push('/');
+      } catch (error) {
+        // Handle login error
+        console.error('Login error:', error);
+        // Optionally, display an error message to the user
+      }
     }
   }
-};
+}
 </script>
 
 <style scoped>
