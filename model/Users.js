@@ -114,43 +114,45 @@ class Users {
     }
 
     async login(req, res) {
-        try {
-            const { email, password } = req.body;
-            const qry = `SELECT userID, firstName, lastName, email, password FROM users WHERE email=${db.escape(email)}`;
-
-            db.query(qry, async (err, result) => {
-                if (err) throw err;
-                if (!result?.length) {
-                    res.json({
-                        status: res.statusCode,
-                        msg: "You provided a wrong email address",
-                    });
-                } else {
-                    const validPass = await compare(password, result[0].password);
-                    if (validPass) {
-                        const token = createToken({
-                            email,
-                            password,
-                        });
-                        res.json({
-                            status: res.statusCode,
-                            msg: "You logged in",
-                            result,
-                        });
-                    } else {
-                        res.json({
-                            status: res.statusCode,
-                            msg: "Please provide correct password",
-                            result,
-                        });
-                    }
-                }
-            });
-        } catch (error) {
-            console.error("Error during login:", error);
-            res.status(500).json({ msg: "Login error" });
-        }
-    }
+      try {
+          const { email, password } = req.body;
+          const qry = `SELECT userID, firstName, lastName, email, password FROM users WHERE email=${db.escape(email)}`;
+  
+          db.query(qry, async (err, result) => {
+              if (err) throw err;
+              if (!result?.length) {
+                  res.json({
+                      status: res.statusCode,
+                      msg: "You provided a wrong email address",
+                  });
+              } else {
+                  const validPass = await compare(password, result[0].password);
+                  if (validPass) {
+                      // Password is correct, generate and return token
+                      const token = createToken({
+                          email,
+                          password,
+                      });
+                      res.json({
+                          status: res.statusCode,
+                          msg: "You logged in",
+                          token,  // Return token to the client
+                      });
+                  } else {
+                      // Password is incorrect
+                      res.json({
+                          status: res.statusCode,
+                          msg: "Please provide correct password",
+                          result,
+                      });
+                  }
+              }
+          });
+      } catch (error) {
+          console.error("Error during login:", error);
+          res.status(500).json({ msg: "Login error" });
+      }
+  }
 }
 
 export { Users };

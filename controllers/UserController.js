@@ -78,7 +78,7 @@ userRouter.delete('/delete/:id', async (req, res) => {
 });
 
 // User login
-userRouter.post('/login', async (req, res) => {
+userRouter.post('/login', bodyParser.json(), async (req, res) => {
     try {
         await users.login(req, res);
     } catch (e) {
