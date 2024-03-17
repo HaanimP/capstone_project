@@ -12,29 +12,23 @@ config()
 const app=express()
 const port = +process.env.PORT || 4001
 
-//Middleware
-app.use((req,res,next)=>{
-res.header("Access-Control-Allow-Origin","*")
-res.header("Access-Control-Allow-Credentials","*")
-res.header("Access-Control-Allow-Methods","*")
-res.header("Access-Control-Request-Methods","*")
-res.header("Access-Control-Allow-Headers","*")
-res.header("Access-Control-Expose-Headers","*");
-next();
-}) 
+// Middleware
+app.use(cors());
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser());
 
-app.use(
-    express.static('./static'),
-    express.json(),
-    express.urlencoded({
-        extended:true,
-    }),
-    cookieParser(),
-    cors()
-)
-app.get('^/$', (req, res) => {
-    res.status(200).sendFile(path.join(__dirname, './static/index.html'));
+// Serve static files
+const __dirname = path.dirname(new URL(import.meta.url).pathname);
+app.use(express.static(path.join(__dirname, 'static')));
+
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, './static/index.html'));
 });
+
+// Error handling middleware
+app.use(errorHandling);
+
 // users
 app.use('/users',userRouter)
 
