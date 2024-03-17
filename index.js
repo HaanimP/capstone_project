@@ -10,7 +10,7 @@ import { cartRouter } from "./controllers/CartController.js";
 config()
 
 const app=express()
-const port = +process.env.PORT || 4001
+const port = +process.env.PORT || 8080
 
 // Middleware
 app.use(cors());
