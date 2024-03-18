@@ -19,8 +19,8 @@
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
               <li><router-link to="/products" class="dropdown-item">View our entire Collection</router-link></li>
-              <li><router-link to="/jilbab" class="dropdown-item">Jilbab Collection</router-link></li>
-              <li><router-link to="/satin" class="dropdown-item">Satin Collection</router-link></li>
+              <li><router-link to="/modestview" class="dropdown-item">Modest Elegance</router-link></li>
+              <li><router-link to="/nurulhuda" class="dropdown-item">Nurul Huda</router-link></li>
               <li><router-link to="/chiffon" class="dropdown-item">Chiffon Collection</router-link></li>
             </ul>
           </li>

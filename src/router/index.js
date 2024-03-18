@@ -13,6 +13,8 @@ import ProfileView from '@/views/ProfileView.vue';
 import SignUpView from '@/views/SignUpView.vue';
 import UpdateView from '@/views/UpdateView.vue';
 import CartView from '@/views/CartView.vue';
+import ModestView from '@/views/ModestView.vue';
+import NurulHuda from '@/views/NurulHuda.vue';
 
 const routes = [
   {
@@ -34,6 +36,16 @@ const routes = [
     path: '/products/:id',
     name: 'productView',
     component: ProductView,
+  },
+  {
+    path: '/modestview',
+    name: 'ModestView',
+    component: ModestView,
+  },
+  {
+    path: '/nurulhuda',
+    name: 'NurulHuda',
+    component: NurulHuda,
   },
   {
     path: '/cart',

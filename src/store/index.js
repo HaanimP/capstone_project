@@ -26,6 +26,7 @@ export default createStore({
     },
     setUser(state, value) {
       state.user = value;
+      localStorage.setItem('user', JSON.stringify(value)); // Save user information to localStorage
     },
     setProducts(state, value) {
       state.products = value;
@@ -293,13 +294,6 @@ async login({ commit }, { email, password }) {
       context.commit('sortProductsByName', order);
     },
   },
-  // In your Vuex store
-mutations: {
-  setUser(state, user) {
-    state.user = user;
-    localStorage.setItem('user', JSON.stringify(user)); // Save user information to localStorage
-  },
-},
   modules: {
   }, 
 })

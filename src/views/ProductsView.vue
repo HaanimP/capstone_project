@@ -2,13 +2,12 @@
   <NavbarComp />
   <div class="background">
     <div class="container">
-      <h1>Products</h1>
 
       <div class="row d-flex justify-content-between align-items-center mb-4">
         <!-- Sort Button -->
         <div>
-          <button type="button" class="btn btn-submit sort" @click="sortByPrice">Sort by Price</button>
-          <button type="button" class="btn btn-submit sort" @click="sortByName">Sort by Name</button>
+          <button type="button" class="btn btn-submit sort" @click="sortByPrice">Sort by Price</button><br><br>
+          <button type="button" class="btn btn-submit sort" @click="sortByName">Sort by Name</button><br><br>
         </div>
 
         <!-- Search Input -->
@@ -113,7 +112,7 @@ export default {
 }
 
 .background {
-  background: #ffe5b4;
+  background: #B76E79;
   background-size: cover;
   background-blend-mode: soft-light;
   background-position: center center;
