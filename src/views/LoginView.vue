@@ -75,7 +75,7 @@ export default {
 .background {
     padding-top: 60px; 
   min-height: 100vh;
-  background-image: url("https://i.ibb.co/BcYFfTg/login-image.jpg");
+  background-image: url("https://i.ibb.co/ZTDK63D/cap-back.jpg");
   background-size: cover;
   background-blend-mode: soft-light;
   background-position: center center;
