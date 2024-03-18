@@ -21,7 +21,7 @@
               <li><router-link to="/products" class="dropdown-item">View our entire Collection</router-link></li>
               <li><router-link to="/modestview" class="dropdown-item">Modest Elegance</router-link></li>
               <li><router-link to="/nurulhuda" class="dropdown-item">Nurul Huda</router-link></li>
-              <li><router-link to="/chiffon" class="dropdown-item">Chiffon Collection</router-link></li>
+              <li><router-link to="/aakeefahview" class="dropdown-item">Aakeefah View</router-link></li>
             </ul>
           </li>
           <li class="nav-item">
