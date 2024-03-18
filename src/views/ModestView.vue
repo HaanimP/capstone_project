@@ -81,7 +81,7 @@ export default {
 }
 
 .about-me-section {
-  background: #d99b6c; 
+  background: linear-gradient(to right, #b86b77 0%, #d99b6c 100%);
   color: #FFF; 
   padding: 30px; 
   border-radius: 15px; 
@@ -102,8 +102,8 @@ export default {
 }
 
 .about-me-img {
-  max-width: 35%; 
-  border-radius: 50%; 
+  max-width: 50%; 
+  height: 50%; 
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
 }
 
@@ -182,7 +182,7 @@ export default {
 }
 
 .see-more-btn:hover {
-  background-color: #2575fc;
+  background-color: #b86b77;
 }
 
 @media (max-width: 768px) {
