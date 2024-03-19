@@ -29,6 +29,7 @@
   font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  
   text-align: center;
   color: #000;
   background-color: #B76E79;
@@ -44,6 +45,8 @@
    position: relative;
    z-index: 9999;
 }
-
+::-webkit-scrollbar {
+  display: none;
+}
 </style>
 

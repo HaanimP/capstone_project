@@ -2,7 +2,7 @@
   <NavbarComp />
   <section class="background">
     <div class="container py-5">
-      <div class="row d-flex justify-content-center align-items-center">
+      <div class="row">
         <div class="col-md-12 col-xl-4">
           <div class="card shadow-lg" style="border-radius: 15px;">
             <div class="card-body text-center">
@@ -80,12 +80,15 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 20px;
+  gap: 20px; 
 }
 
 .container .card {
   background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent white background */
   border-radius: 15px;
+  min-width: 400px; /* Prevents the image from being too small */
+  min-height: 100px; 
+  
 }
 
 .container h4 {
@@ -100,6 +103,8 @@ export default {
   object-fit: cover;
   border-radius: 50%;
   border: 3px solid #B76E79;
+  min-width: 120px; /* Prevents the image from being too small */
+  min-height: 120px; 
 }
 
 .container p {
