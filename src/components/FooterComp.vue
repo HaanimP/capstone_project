@@ -23,9 +23,9 @@
         <div class="col-lg-2 col-md-6">
           <h5 class="footer-title">Sister Companies</h5>
           <ul class="list-unstyled footer-list">
-            <li><a href="#">Home</a></li>
-            <li><a href="#">About</a></li>
-            <li><a href="#">Get started</a></li>
+            <li><router-link to="/modestview" class="dropdown-item">Modest Elegance</router-link></li>
+              <li><router-link to="/nurulhuda" class="dropdown-item">Nurul Huda</router-link></li>
+              <li><router-link to="/zahraatul" class="dropdown-item">Zahraa Tul Islam</router-link></li>
           </ul>
         </div>
       </div>
