@@ -2,8 +2,8 @@
     <NavbarComp/>
     <div class="container">
       <section class="mx-auto my-5" style="max-width: 75rem;">
-        <h2 class="text-center mb-4 text-white font-weight-bold display-4">A Sneak Peek of Our Sister Company</h2>
-        <p class="text-center mb-4 text-white lead font-weight-bold">Our sister company is a pioneering social media platform designed specifically for young Muslim women. It serves as a unique space where these women can openly share their personal struggles, experiences, and triumphs within the context of Islam. Through candid storytelling, they illuminate their individual journeys, offering insights into navigating the complexities of faith and identity. By providing a supportive community and fostering meaningful connections, our platform empowers these women to inspire and uplift one another, fostering a sense of solidarity and resilience among Muslim girls worldwide.</p>
+        <h2 class="text-center mb-4 text-white font-weight-bold display-4">A Sneak Peek of Our Sister Company Zahraa Tul Islam</h2>
+        <p class="text-center mb-4 text-white lead font-weight-bold">Zahraa Tul Islamic is a pioneering social media platform designed specifically for young Muslim women. It serves as a unique space where these women can openly share their personal struggles, experiences, and triumphs within the context of Islam. Through candid storytelling, they illuminate their individual journeys, offering insights into navigating the complexities of faith and identity. By providing a supportive community and fostering meaningful connections, our platform empowers these women to inspire and uplift one another, fostering a sense of solidarity and resilience among Muslim girls worldwide.</p>
         
         <div class="container my-5 about-me-section">
     <div class="row align-items-center">

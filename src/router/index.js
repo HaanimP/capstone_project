@@ -15,7 +15,7 @@ import UpdateView from '@/views/UpdateView.vue';
 import CartView from '@/views/CartView.vue';
 import ModestView from '@/views/ModestView.vue';
 import NurulHuda from '@/views/NurulHuda.vue';
-import AakeefahView from '@/views/AakeefahView.vue';
+import ZahraaTul from '@/views/ZahraaTul.vue';
 
 const routes = [
   {
@@ -49,9 +49,9 @@ const routes = [
     component: NurulHuda,
   },
   {
-    path: '/aakeefahview',
-    name: 'AakeefahView',
-    component: AakeefahView,
+    path: '/zahraatul',
+    name: 'ZahraaTul',
+    component: ZahraaTul,
   },
   {
     path: '/cart',
