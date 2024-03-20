@@ -3,7 +3,7 @@ import HomeView from '../views/HomeView.vue';
 import AboutView from '../views/AboutView.vue';
 import ProductsView from '../views/ProductsView.vue';
 import ProductView from '../views/ProductView.vue';
-import AdminView from '../views/AdminView.vue';
+import AdminView from '../views/AdminView.vue'; // Keeping the AdminView import
 import ContactView from '../views/ContactView.vue';
 import LoginView from '../views/LoginView.vue';
 import RegProductView from '../views/RegProductView.vue';
@@ -62,7 +62,6 @@ const routes = [
     path: '/admin',
     name: 'admin',
     component: AdminView,
-    meta: { requiresAuth: true, isAdmin: true }
   },
   {
     path: '/admin/update/:id',
@@ -109,19 +108,6 @@ const routes = [
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes,
-});
-
-router.beforeEach((to, from, next) => {
-  const isAuthenticated = !!localStorage.getItem('token'); // Check if user is authenticated
-  const isAdmin = ['haanimpietersen@gmail.com', 'hoosenammara@gmail.com', 'aakeefahj@gmail.com', 'nishaatgafieldien@gmail.com'].includes(localStorage.getItem('email')); // Check if user is admin
-  
-  if (to.meta.requiresAuth && !isAuthenticated) {
-    next('/login'); // Redirect to login page if authentication is required but user is not authenticated
-  } else if (to.meta.isAdmin && !isAdmin) {
-    next('/'); // Redirect to home page if user is not admin but trying to access admin route
-  } else {
-    next(); // Proceed to the requested route
-  }
 });
 
 export default router;

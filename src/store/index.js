@@ -2,7 +2,6 @@ import { createStore } from 'vuex';
 import axios from 'axios';
 import sweet from 'sweetalert';
 import { useCookies } from 'vue3-cookies';
-import router from '@/router';
 
 const { cookies } = useCookies();
 const haanimsURL = 'https://capstone-project-h6pk.onrender.com';
@@ -24,9 +23,9 @@ export default createStore({
     setUsers(state, value) {
       state.users = value;
     },
-    setUser(state, value) {
-      state.user = value;
-      localStorage.setItem('user', JSON.stringify(value)); // Save user information to localStorage
+    setUser(state, user) {
+      state.user = user;
+      localStorage.setItem('user', JSON.stringify(user));
     },
     setProducts(state, value) {
       state.products = value;
@@ -59,7 +58,7 @@ export default createStore({
     },
     setToken(state, token) {
       state.token = token;
-      localStorage.setItem('token', token); // Save token to localStorage
+      localStorage.setItem('token', token);
     },
     logout(state) {
       state.user = null;
@@ -87,9 +86,9 @@ async login({ commit }, { email, password }) {
     const response = await axios.post(`${haanimsURL}/users/login`, { email, password });
     const { token, user } = response.data;
     commit('setToken', token);
-    commit('setUser', user); // Store user information in Vuex store
+    commit('setUser', user);
     console.log('Login successful:', user);
-    return { success: true, msg };
+    return { success: true, msg: 'Login successful' };
   } catch (error) {
     console.error('Login error:', error);
     return { success: false, msg: 'Login failed. Please check your credentials and try again.' };
@@ -219,38 +218,10 @@ async login({ commit }, { email, password }) {
         }) 
       }
     },
-    async updateProduct(context, payload) {
-      console.log('payload :' +payload.prodID);
-
-      try{
-        let {msg} = await (await axios.patch(`${haanimsURL}products/update/${payload.prodID}`, payload)).data
-       
-        console.log('message : ' + msg);
-        // if(msg) {
-          // console.log('successful');
-          context.dispatch('fetchProducts')
-          sweet({
-            title: 'Products was updated',
-            text: msg,
-            icon: "success",
-            timer: 2000
-          }) 
-        // }
-      }catch(e) {
-
-        console.log('gets here');
-        sweet({
-          title: 'Error',
-          text: 'An error occurred when updating a product.',
-          icon: "success",
-          timer: 2000
-        }) 
-      }
-    },
-    async addProduct({ commit, dispatch }, payload) {
+    async addProduct({ dispatch }, payload) {
       try {
         const response = await axios.post(`${haanimsURL}/products/addProduct`, payload);
-        const { msg, product } = response.data;
+        const { msg } = response.data;
         if (msg) {
           dispatch('fetchProducts'); // Fetch updated list of products after adding
           // Optionally commit mutation if needed
@@ -260,7 +231,7 @@ async login({ commit }, { email, password }) {
         return { success: false, msg: 'An error occurred when adding a product.' };
       }
     },
-    async updateProduct({ commit, dispatch }, payload) {
+    async updateProduct({ dispatch }, payload) {
       try {
         const response = await axios.patch(`${haanimsURL}/products/update/${payload.prodID}`, payload);
         const { msg } = response.data;
@@ -273,9 +244,9 @@ async login({ commit }, { email, password }) {
         return { success: false, msg: 'An error occurred when updating a product.' };
       }
     },
-    async deleteProduct({ commit, dispatch }, productId) {
+    async deleteProduct({ dispatch }, prodID) {
       try {
-        const response = await axios.delete(`${haanimsURL}/products/delete/${productId}`);
+        const response = await axios.delete(`${haanimsURL}/products/delete/${prodID}`);
         const { msg } = response.data;
         if (msg) {
           dispatch('fetchProducts'); // Fetch updated list of products after deletion
