@@ -12,13 +12,13 @@
 
         <!-- Search Input -->
         <div>
-          <input type="text" style="height: 40px;" placeholder="Search" class="search"/>
+          <input v-model="searchQuery" type="text" style="height: 40px;" placeholder="Search" class="search"/>
         </div>
       </div>
 
       <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 justify-content-center">
-        <template v-if="products">
-          <Card class="card m-2" style="width: 16rem;" v-for="product in products" :key="product.products_id">
+        <template v-if="filteredProducts">
+          <Card class="card m-2" style="width: 16rem;" v-for="product in filteredProducts" :key="product.products_id">
             <!-- Card content here -->
             <template #cardImgTop>
               <img class="card-img-top" style="height: 200px;" :src="product.prodUrl" :alt="product.prodName"/>
@@ -27,9 +27,6 @@
               <h4 class="card-title">{{ product.prodName }}</h4>
             </template>
             <template #cardBody>
-              <p class="card-text text-dark bg-gradient bg-dark-subtle p-2">
-                Quantity: {{ product.prodQuantity }}
-              </p>
               <p class="card-text text-dark bg-gradient bg-dark-subtle p-2">
                 Amount: R{{ product.productAmount }}
               </p>
@@ -50,7 +47,7 @@
 import NavbarComp from "@/components/NavbarComp.vue";
 import Card from "@/components/Card.vue";
 import Spinner from "@/components/Spinner.vue";
-import FooterComponent from "@/components/FooterComp.vue"
+import FooterComponent from "@/components/FooterComp.vue";
 
 export default {
   name: "ProductsComp",
@@ -61,21 +58,39 @@ export default {
     FooterComponent
   },
 
+  data() {
+    return {
+      searchQuery: ''
+    };
+  },
+
   computed: {
     products() {
       return this.$store.state.products;
     },
+    filteredProducts() {
+      if (!this.searchQuery) return this.products;
+
+      const query = this.searchQuery.toLowerCase();
+      return this.products.filter(product => {
+        return product.prodName.toLowerCase().includes(query);
+      });
+    }
   },
+
   mounted() {
     this.$store.dispatch("fetchProducts");
   },
+
   methods: {
     sortByPrice() {
-      this.$store.dispatch('sortProductsByPrice');
+      const order = 'asc'; 
+      this.$store.dispatch('sortProductsByPrice', order);
     },
     sortByName() {
-      this.$store.dispatch('sortProductsByName');
-    },
+      const order = 'asc'; 
+      this.$store.dispatch('sortProductsByName', order);
+    }
   }
 };
 </script>
