@@ -24,19 +24,20 @@ class Products{
            })
         })
    }
-   addProduct(req,res){
-       const qry=` INSERT INTO products SET ?;`
-       let data = req.body
-       db.query(qry,[data], (err)=>{
-         if(err) throw err
-         res.json({
-           status: res.statusCode,
-           msg:'new product was added'
-         })
-
-
-       })
-   }
+   addProduct(req, res) {
+    const qry = `INSERT INTO products SET ?;`;
+    const data = req.body; // Assuming req.body contains the data to be inserted
+    db.query(qry, data, (err) => {
+      if (err) {
+        console.error(err);
+        return res.status(500).json({ msg: 'Failed to add product' });
+      }
+      res.json({
+        status: res.statusCode,
+        msg: 'New product was added'
+      });
+    });
+  }  
    deleteProducts(req,res){
      const qry=`DELETE FROM products ;`
 
