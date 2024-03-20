@@ -1,59 +1,34 @@
-import express from 'express'
-import bodyParser from 'body-parser'
-import { cart } from '../model/index.js'
+import express from 'express';
+import { Cart } from '../model/index.js';
 
-const cartRouter=express.Router()
+const cartRouter = express.Router();
+const cart = new Cart();
 
-//fetch all products
-cartRouter.get('/',(req,res)=>{
-    try{
-        cart.fetchCart(req,res)
-    }catch(e){
-        res.json({
-            status:res.statusCode,
-            msg:'failed to retrieve a product'
-        })
+// Fetch all cart items for a user
+cartRouter.get('/:userId', (req, res) => {
+    try {
+        const userId = req.params.userId;
+        cart.fetchCart(userId, res);
+    } catch (e) {
+        res.status(500).json({
+            status: res.statusCode,
+            msg: 'Failed to retrieve cart items'
+        });
     }
+});
 
-})
-cartRouter.get('/:id',(req,res)=>{
-    try{
-        cart.fetchCart(req,res)
-    }catch(e){
-        res.json({
-            status:res.statusCode,
-            msg:'failed to retrieve a product'
-        })
+// Delete a specific item from the cart
+cartRouter.delete('/:userId/:itemId', (req, res) => {
+    try {
+        const userId = req.params.userId;
+        const itemId = req.params.itemId;
+        cart.deleteItemFromCart(userId, itemId, res);
+    } catch (e) {
+        res.status(500).json({
+            status: res.statusCode,
+            msg: 'Failed to delete item from cart'
+        });
     }
+});
 
-})
-cartRouter.delete('/deleteCart',(req,res)=>{
-    try{
-        cart.deleteCart(req,res)
-
-    }catch(e){
-
-        res.json({
-            status:res.statusCode,
-            msg:'failed to delete a product',
-            // results:products.fetchProducts(req,res)
-        })
-    }
-})
-
-cartRouter.delete('/delete/:id',(req,res)=>{
-    try{
-        cart.deleteCart(req,res)
-
-    }catch(e){
-
-        res.json({
-            status:res.statusCode,
-            msg:'failed to delete a user',
-        })
-    }
-})
-
-export{
-    cartRouter
-}
+export { cartRouter };
