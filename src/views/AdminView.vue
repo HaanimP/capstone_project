@@ -7,7 +7,7 @@
         <div class="row d-flex justify-content-evenly">
           <!-- Sort and add buttons with updated styles -->
           <div class="col">
-            <button type="button" class="btn btn-submit sort bold bigger-text" @click="sortByName">Sort</button>
+            <button type="button" class="btn btn-submit sort" @click="sortByName">Sort</button>
           </div>
           <div class="col">
             <button type="button" class="btn addItems bold bigger-text" @click="navigateToAddProduct">Add</button>
@@ -37,130 +37,91 @@
         <div class="container">
           <table class="table table-hover" v-if="products">
             <thead>
-              <tr>
-                <th scope="col">Item No</th>
-                <th scope="col">Item Image</th>
-                <th scope="col">Item Name</th>
-                <th scope="col">Price</th>
-                <th scope="col">Quantity</th>
-                <th scope="col">Edit Item</th>
-              </tr>
-            </thead>
-            <tbody v-for="product in products" :key="product.prodID">
-              <tr>
-                <td>{{ product.prodID }}</td>
-                <!-- Adjusted image size -->
-                <td><img :src="product.prodUrl" width="100px" height="auto" :alt="product.prodUrl"></td>
-                <td>{{ product.prodName }}</td>
-                <td>R{{ product.productAmount }}</td>
-                <td>{{ product.prodQuantity }}</td>
-                <td>
-                  <!-- Router links for update and delete buttons -->
-                  <router-link :to="{ name: 'update', params: { id: product.prodID }}">
-                    <button type="button" class="btn btn-success btn-lg bold bigger-text" @click="updateProduct(product)">Update</button>
-                  </router-link><br><br>
-                  <button class="btn btn-danger btn-lg bold bigger-text" @click="deleteProduct(product.prodID)">Delete</button>
-                </td>
-              </tr>
-            </tbody>
+            <tr>
+              <th scope="col">Item No</th>
+              <th scope="col">Item Image</th>
+              <th scope="col">Item Name</th>
+              <th scope="col">Price</th>
+              <th scope="col">Edit Item</th>
+            </tr>
+          </thead>
+          <tbody v-for="product in products" :key="product.prodID">
+            <tr>
+              <th scope="row">{{ product.prodID }}</th>
+              <td><img :src="product.prodUrl" width="80px" height="50px" :alt="product.prodUrl"></td>
+              <td>{{ product.prodName }}</td>
+              <td>R{{ product.productAmount }}</td>
+              <td>
+
+
+                <router-link :to="{name : 'update', params:{id:product.prodID}    }">
+                  <button type="button" class="btn btn-success">update  </button>
+                </router-link>
+
+                <button class="btn btn-danger" @click="deleteProduct(product.prodID)">Delete</button>
+
+              </td>
+            </tr>
+
+          </tbody>
           </table>
         </div>
          <!-- User table -->
          <div class="container">
           <table class="table table-hover" v-if="users">
-            <thead>
-              <tr>
-                <th scope="col">User ID</th>
-                <th scope="col">First Name</th>
-                <th scope="col">Last Name</th>
-                <th scope="col">Email</th>
-                <th scope="col">Actions</th>
-              </tr>
-            </thead>
-            <tbody v-for="user in users" :key="user.id">
-              <tr>
-                <td>{{ user.id }}</td>
-                <td>{{ user.firstName }}</td>
-                <td>{{ user.lastName }}</td>
-                <td>{{ user.email }}</td>
-                <td>
-                  <!-- Router links for update and delete buttons -->
-                  <router-link :to="{ name: 'updateUser', params: { id: user.id }}">
-                    <button type="button" class="btn btn-success btn-lg bold bigger-text">Update</button>
-                  </router-link><br><br>
-                  <button class="btn btn-danger btn-lg bold bigger-text" @click="deleteUser(user.id)">Delete</button>
-                </td>
-              </tr>
-            </tbody>
+            <!-- Table body -->
           </table>
         </div>
       </div>
     </div>
-  </div>
+  </div><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+  <FooterComponent/>
 </template>
 
 <script>
 import NavbarComp from "@/components/NavbarComp.vue";
+import FooterComponent from '@/components/FooterComp.vue';
 
 export default {
   name: "AdminView",
-  components: { NavbarComp },
+  components: { 
+    NavbarComp,
+    FooterComponent
+   },
   computed: {
     products() {
       return this.$store.state.products;
     },
     users() {
       return this.$store.state.users;
-    },
+    }
   },
   methods: {
-    async deleteProduct(prodId) {
-      const { success, msg } = await this.$store.dispatch('deleteProduct', prodId);
-      if (success) {
-        // Product deleted successfully
-        // Optionally show a success message
-        console.log(msg);
-      } else {
-        // Error occurred while deleting product
-        // Show an error message
-        console.error(msg);
-      }
-    },
-    async deleteUser(userId) {
-      const { success, msg } = await this.$store.dispatch('deleteUser', userId);
-      if (success) {
-        // User deleted successfully
-        // Optionally show a success message
-        console.log(msg);
-      } else {
-        // Error occurred while deleting user
-        // Show an error message
-        console.error(msg);
-      }
-    },
-    async sortByName() {
-      this.$store.dispatch('sortProductsByName');
+    sortByName() {
+      const order = 'asc'; 
+      this.$store.dispatch('sortProductsByName', order);
     },
     navigateToAddProduct() {
       this.$router.push('/products/addProduct');
     },
-    async updateProduct(product) {
-      const { success, msg } = await this.$store.dispatch('updateProduct', product);
-      if (success) {
-        // Product updated successfully
-        // Optionally show a success message
-        console.log(msg);
+    async deleteProduct(prodID) {
+    try {
+      const response = await this.$store.dispatch('deleteProduct', prodID);
+      if (response.success) {
+        // Optionally show a success message or perform other actions
       } else {
-        // Error occurred while updating product
-        // Show an error message
-        console.error(msg);
+        // Handle error, show error message, etc.
       }
-    },
+    } catch (error) {
+      console.error('Error deleting product:', error);
+      // Handle error, show error message, etc.
+    }
+  },
   },
   mounted() {
     this.$store.dispatch('fetchProducts');
     this.$store.dispatch('fetchUsers');
-  }
+  },
 };
 </script>
 
