@@ -23,9 +23,22 @@
         <label for="productImageUrlInput" class="form-label">Image Url</label>
         <input v-model="prodUrl" type="text" class="form-control" id="productImageUrlInput">
       </div>
-      <button class="btn btn-success" @click="addProduct">Add Product</button>
+      <button class="btn btn-success" @click="addProduct">Add Product</button><br><br>
+      <button class="btn btn-secondary" @click="goBack">Go Back</button>
 
     </div>
+
+    <!-- Toast Notification -->
+    <div v-if="showToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+      <div class="toast-header">
+        <strong class="me-auto">Product Added</strong>
+        <button type="button" class="btn-close" @click="showToast = false"></button>
+      </div>
+      <div class="toast-body">
+        Product was successfully added.
+      </div>
+    </div>
+
   </div>
 </template>
 
@@ -39,7 +52,8 @@ export default {
       productAmount: null,
       description: null,
       prodCategory: null,
-      prodUrl: null
+      prodUrl: null,
+      showToast: false // Control visibility of the toast notification
     };
   },
   
@@ -49,11 +63,18 @@ export default {
         prodName: this.prodName,
         productAmount: this.productAmount,
         description: this.description,
-        prodCategory: this.prodCategory, // Include prodCategory in the product data
+        prodCategory: this.prodCategory,
         prodUrl: this.prodUrl
       };
 
-      this.$store.dispatch('addProduct', productData);
+      this.$store.dispatch('addProduct', productData).then(() => {
+        // Show toast notification when product is added successfully
+        this.showToast = true;
+      });
+    },
+    goBack() {
+      // Navigate back to the admin page
+      this.$router.push('/admin');
     }
   }
 };
@@ -73,5 +94,12 @@ export default {
 
 .form-control {
   font-size: 16px;
+}
+
+.toast {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  width: 300px;
 }
 </style>
