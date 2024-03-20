@@ -1,89 +1,77 @@
-import express from "express"
+import express from "express";
 import bodyParser from "body-parser";
 import { users } from "../model/index.js";
-import { verifyToken } from "../middleware/AuthenticateUser.js";
 
-const userRouter=express.Router()
-//fetch users
-userRouter.get('/',(req,res)=>{
-    try{
-        users.fetchUsers(req,res)
-    }catch(e){
-        res.json({
-            status:res.statusCode,
-            msg:'failed to retrieve users'
-        })
+const userRouter = express.Router();
+
+// Fetch users
+userRouter.get('/', async (req, res) => {
+    try {
+        await users.fetchUsers(req, res);
+    } catch (error) {
+        console.error("Failed to retrieve users:", error);
+        res.status(500).json({ msg: 'Failed to retrieve users' });
     }
-})
-//fetch user
-userRouter.get('/:id',(req,res)=>{
-    try{
-        users.fetchUser(req,res)
-    }catch(e){
-        res.json({
-            status:res.statusCode,
-            msg:'failed to retrieve a user'
-        })
+});
+
+// Fetch user
+userRouter.get('/:id', async (req, res) => {
+    try {
+        await users.fetchUser(req, res);
+    } catch (error) {
+        console.error("Failed to retrieve a user:", error);
+        res.status(500).json({ msg: 'Failed to retrieve a user' });
     }
-})
-userRouter.patch('/update/:id', bodyParser.json(),(req,res)=>{
-    try{
-        users.updateUser(req,res)
-    }catch(e){
-        res.json({
-            status: res.statusCode,
-            msg: 'Update failed'
-        })
+});
+
+// Update user
+userRouter.patch('/update/:id', bodyParser.json(), async (req, res) => {
+    try {
+        await users.updateUser(req, res);
+    } catch (error) {
+        console.error("Update failed:", error);
+        res.status(500).json({ msg: 'Update failed' });
     }
-})
-//add a user
-userRouter.post('/register',bodyParser.json(),(req,res)=>{
-    try{
-        users.createUser(req,res)
-    }catch(e){
-        res.json({
-            status:res.statusCode,
-            msg:'failed to add new user'
-        })
+});
+
+// Add a user
+userRouter.post('/register', bodyParser.json(), async (req, res) => {
+    try {
+        await users.createUser(req, res);
+    } catch (error) {
+        console.error("Failed to add new user:", error);
+        res.status(500).json({ msg: 'Failed to add new user' });
     }
-})
-userRouter.delete('/deleteUsers',(req,res)=>{
-    try{
-        users.deleteUsers(req,res)
+});
 
-    }catch(e){
-
-        res.json({
-            status:res.statusCode,
-            msg:'failed to delete users',
-        })
+// Delete users
+userRouter.delete('/deleteUsers', async (req, res) => {
+    try {
+        await users.deleteUsers(req, res);
+    } catch (error) {
+        console.error("Failed to delete users:", error);
+        res.status(500).json({ msg: 'Failed to delete users' });
     }
-})
+});
 
-userRouter.delete('/delete/:id',(req,res)=>{
-    try{
-        users.deleteUser(req,res)
-
-    }catch(e){
-
-        res.json({
-            status:res.statusCode,
-            msg:'failed to delete a user',
-        })
+// Delete a user
+userRouter.delete('/delete/:id', async (req, res) => {
+    try {
+        await users.deleteUser(req, res);
+    } catch (error) {
+        console.error("Failed to delete a user:", error);
+        res.status(500).json({ msg: 'Failed to delete a user' });
     }
-})
+});
 
-userRouter.post('/login', (req,res)=>{
-    try{
-        users.login(req,res)
-    }catch(e){
-        res.json({
-            status : req.statusCode,
-            msg : 'failed to login'
-        })
+// Login
+userRouter.post('/login', async (req, res) => {
+    try {
+        await users.login(req, res);
+    } catch (error) {
+        console.error("Failed to login:", error);
+        res.status(500).json({ msg: 'Failed to login' });
     }
-})
+});
 
-export{
-    userRouter,express
-}
+export { userRouter, express };
