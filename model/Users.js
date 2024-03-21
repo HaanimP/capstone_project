@@ -129,6 +129,7 @@ class Users {
             status: res.statusCode,
             msg: "You logged in",
             result,
+            token,
           });
         } else {
           res.json({
