@@ -1,6 +1,6 @@
 import { createStore } from 'vuex';
 import axios from 'axios';
-import sweet from 'sweetalert';
+import swal from 'sweetalert';
 import { useCookies } from 'vue3-cookies';
 
 const { cookies } = useCookies();
@@ -50,8 +50,15 @@ export default createStore({
     setCartItems(state, items) {
       state.cartItems = items;
     },
-    addToCart(state, item) {
-      state.cartItems.push(item);
+    addToCart(state, product) {
+      const existingProductIndex = state.cart.findIndex(item => item.prodID === product.prodID);
+      if (existingProductIndex === -1) {
+        // Product not in cart, add new entry with quantity 1
+        state.cart.push({ ...product, quantity: 1 });
+      } else {
+        // Product already in cart, increment the quantity
+        state.cart[existingProductIndex].quantity++;
+      }
     },
     removeFromCart(state, index) {
       state.cartItems.splice(index, 1);
@@ -104,7 +111,7 @@ async login({ commit }, { email, password }) {
           context.commit('setUsers', results);
         }
       } catch (e) {
-        sweet({
+        swal({
           title: 'Error',
           text: 'An error occurred when retrieving users.',
           icon: "error",
@@ -119,7 +126,7 @@ async login({ commit }, { email, password }) {
         if (result) {
           context.commit('setUser', result);
         } else {
-          sweet({
+          swal({
             title: 'Retrieving a single user',
             text: 'User was not found',
             icon: "info",
@@ -127,7 +134,7 @@ async login({ commit }, { email, password }) {
           });
         }
       } catch (e) {
-        sweet({
+        swal({
           title: 'Error',
           text: 'A user was not found.',
           icon: "error",
@@ -142,7 +149,7 @@ async login({ commit }, { email, password }) {
         const { msg } = response.data;
         if (msg) {
           dispatch('fetchUsers'); // Fetch updated list of users after updating
-          sweet({
+          swal({
             title: 'Update user',
             text: msg,
             icon: "success",
@@ -151,7 +158,7 @@ async login({ commit }, { email, password }) {
         }
         return { success: true, msg };
       } catch (error) {
-        sweet({
+        swal({
           title: 'Error',
           text: 'An error occurred when updating a user.',
           icon: "error",
@@ -165,7 +172,7 @@ async login({ commit }, { email, password }) {
         const { msg } = await axios.delete(`${haanimsURL}/users/${payload.id}`);
         if (msg) {
           context.dispatch('fetchUsers');
-          sweet({
+          swal({
             title: 'Delete user',
             text: msg,
             icon: "success",
@@ -173,7 +180,7 @@ async login({ commit }, { email, password }) {
           });
         }
       } catch (e) {
-        sweet({
+        swal({
           title: 'Error',
           text: 'An error occurred when deleting a user.',
           icon: "error",
@@ -189,7 +196,7 @@ async login({ commit }, { email, password }) {
           context.commit('setProducts', results)
         }
       }catch(e) {
-        sweet({
+        swal({
           title: 'Error',
           text: 'An error occurred when retrieving products.',
           icon: "error",
@@ -204,7 +211,7 @@ async login({ commit }, { email, password }) {
         if(result) {
           context.commit('setProduct', result)
         }else {
-          sweet({
+          swal({
             title: 'Retrieving a single product',
             text: 'Product was not found',
             icon: "info",
@@ -212,7 +219,7 @@ async login({ commit }, { email, password }) {
           }) 
         }
       }catch(e) {
-        sweet({
+        swal({
           title: 'Error',
           text: 'A product was not found.',
           icon: "error",
@@ -266,6 +273,9 @@ async login({ commit }, { email, password }) {
     sortProductsByName(context, order) {
       context.commit('sortProductsByName', order);
     },
+    addToCart({ commit }, product) {
+      commit('addToCart', product);
+    }
   },
   modules: {
   }, 

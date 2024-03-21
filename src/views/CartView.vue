@@ -15,22 +15,22 @@
             </tr>
           </thead>
           <tbody>
-            <tr v-for="(item, index) in products" :key="index">
-              <td>{{ index + 1 }}</td>
-              <td><img :src="item.prodURL" alt="item.prodName" style="max-width: 50px;"></td>
-              <td>{{ item.prodName }}</td>
-              <td>R{{ item.productAmount.toFixed(2) }}</td>
-              <td>
-                <input type="number" class="quantity-input" placeholder="Qty" min="1" v-model.number="item.quantity">
-              </td>
-              <td>
-                <button @click="addToCart(item, item.quantity)">Add to Cart</button>
-              </td>
-            </tr>
-          </tbody>
+  <tr v-if="product" :key="product.prodID">
+    <td>1</td>
+    <td><img :src="product.prodURL" :alt="product.prodName" style="max-width: 50px;"></td>
+    <td>{{ product.prodName }}</td>
+    <td>R{{ product.productAmount.toFixed(2) }}</td>
+    <td>
+      <input type="number" class="quantity-input" placeholder="Qty" min="1" v-model.number="product.quantity">
+    </td>
+    <td>
+      <button @click="addToCart(product)">Add to Cart</button>
+    </td>
+  </tr>
+</tbody>
         </table>
       </main>
-      <div id="totalAmount">Total Amount: R{{ totalAmount.toFixed(2) }}</div><br>
+      <div id="totalAmount">Total Amount: R{{ totalAmount }}</div><br>
       <div>
         <button id="payButton" @click="handlePayment">Pay Now</button>
       </div>
@@ -42,6 +42,10 @@
 <script>
 import NavbarComp from "@/components/NavbarComp.vue";
 import FooterComponent from "@/components/FooterComp.vue";
+import axios from 'axios';
+import { mapActions } from 'vuex';
+
+const haanimsURL = 'https://capstone-project-h6pk.onrender.com';
 
 export default {
   name: "CartView",
@@ -51,38 +55,51 @@ export default {
   },
   data() {
     return {
-      products: [/* Array of product objects */],
+      product: null, // Initialize product as null
       bought: JSON.parse(localStorage.getItem("bought")) || [],
     };
   },
   computed: {
-  totalAmount() {
-    if (!this.bought || !this.bought.length) {
-      return 0;
-    }
-    const total = this.bought.reduce((acc, item) => {
-      const price = Number(item.productAmount);
-      const quantity = Number(item.quantity || 0);
-      return acc + (price * quantity);
-    }, 0);
-    return total ? total.toFixed(2) : '0.00';
-  },
-},
-  methods: {
-    addToCart(product, quantity) {
-      const productIndex = this.bought.findIndex(item => item.prodID === product.prodID);
-      if (productIndex === -1) {
-        // Product not in cart, add new entry with specified quantity
-        this.bought.push({ ...product, quantity });
-      } else {
-        // Product already in cart, update the quantity
-        this.bought[productIndex].quantity += quantity;
+    totalAmount() {
+      let total = 0;
+      if (this.bought && this.bought.length > 0) {
+        total = this.bought.reduce((acc, item) => {
+          const price = Number(item.productAmount) || 0;
+          const quantity = Number(item.quantity || 0);
+          return acc + price * quantity;
+        }, 0);
       }
-      localStorage.setItem("bought", JSON.stringify(this.bought));
-      alert(`${quantity} x ${product.prodName} added to the cart.`);
+      return total.toFixed(2);
     },
   },
-}
+  methods: {
+    ...mapActions(['addToCart']), // Add this line to map the addToCart action
+    handlePayment() {
+      // Handle payment logic here
+    },
+    async fetchProduct(prodID) {
+      try {
+        const response = await axios.get(`${haanimsURL}/products/${prodID}`);
+        if (response.data) {
+          this.product = response.data; // Set the product object
+        }
+      } catch (error) {
+        console.error('Error fetching product:', error);
+        swal({
+          title: 'Error',
+          text: 'An error occurred when retrieving the product.',
+          icon: "error",
+          timer: 2000
+        });
+      }
+    }
+  },
+  mounted() {
+    // Assuming prodID is available in your component
+    const prodID = this.$route.params.prodID; // or whatever parameter holds the product ID
+    this.fetchProduct(prodID); // Fetch product when the component is mounted
+  },
+};
 </script>
 
 <style scoped>
