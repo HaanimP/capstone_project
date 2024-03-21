@@ -21,17 +21,17 @@
             <form v-on:submit.prevent="submitForm" action="https://formspree.io/f/xyyrdylw" method="POST">
               <!-- Name input -->
               <div class="form-group">
-                <input type="text" class="form-control" id="name" placeholder="Name" required />
+                <input type="text" class="form-control" id="name" placeholder="Name" name="name" required />
               </div>
 
               <!-- Email input -->
               <div class="form-group">
-                <input type="email" class="form-control" id="email" placeholder="Email address" required />
+                <input type="email" class="form-control" id="email" placeholder="Email address" name="_replyto" required />
               </div>
 
               <!-- Message input -->
               <div class="form-group">
-                <textarea class="form-control" id="message" rows="4" placeholder="Message" required></textarea>
+                <textarea class="form-control" id="message" rows="4" placeholder="Message" name="message" required></textarea>
               </div>
 
               <!-- Checkbox -->
