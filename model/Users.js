@@ -1,144 +1,77 @@
-import { connection as db } from "../config/index.js";
-import { hash, compare } from "bcrypt";
-import { createToken } from "../middleware/AuthenticateUser.js";
-class Users {
-  fetchUsers(req, res) {
-    const qry = `
-        SELECT userID,firstName,lastName,email,password
-        FROM users
-        `;
-    db.query(qry, (err, results) => {
-      if (err) throw err;
-      res.json({
-        status: res.statusCode,
-        results,
-      });
-    });
-  }
-  fetchUser(req, res) {
-    const qry = `
-    SELECT userID,firstName,lastName,email,password
-    FROM users
-        WHERE userID = ${req.params.id}
-        `;
-    db.query(qry, (err, result) => {
-      if (err) throw err;
-      res.json({
-        status: res.statusCode,
-        result,
-      });
-    });
-  }
-  async createUser(req, res) {
-    //payload
-    let data = req.body;
-    data.userPwd = await hash(data?.userPwd, 10);
-    let user = {
-      emailAdd: data.emailAdd,
-      userPwd: data.userPwd,
-    };
-    const qry = `
-    INSERT INTO users
-    SET ?;
-    `;
-    db.query(qry, [data], (err) => {
-      if (err) {
-        res.json({
-          status: res.statusCode,
-          msg: "already exists.please use another email address",
-        });
-      } else {
-        //create token
-        let token = createToken(user);
-        res.json({
-          status: res.statusCode,
-          token,
-          msg: "You're registered",
-        });
-      }
-    });
-  }
+import express from "express";
+import bodyParser from "body-parser";
+import { users } from "../model/index.js";
 
-  deleteUsers(req, res) {
-    const qry = `DELETE FROM users ;`;
+const userRouter = express.Router();
 
-    db.query(qry, (err) => {
-      if (err) throw err;
-
-      res.json({
-        status: res.statusCode,
-        msg: "Users are deleted!",
-      });
-    });
-  }
-
-  deleteUser(req, res) {
-    const qry = `DELETE FROM users WHERE userID=${req.params.id} ;`;
-    // const user = req.body
-
-    db.query(qry, (err) => {
-      if (err) throw err;
-      res.json({
-        status: res.statusCode,
-        msg: "Users are deleted!",
-      });
-    });
-  }
-
-  async updateUser(req, res) {
-    let data = req.body;
-    if (data?.userPwd) {
-      data.userPwd = await hash(data?.userPwd, 8);
+// Fetch users
+userRouter.get('/', async (req, res) => {
+    try {
+        await users.fetchUsers(req, res);
+    } catch (error) {
+        console.error("Failed to retrieve users:", error);
+        res.status(500).json({ msg: 'Failed to retrieve users' });
     }
-    const qry = `
-      UPDATE users 
-      SET ?
-      WHERE userID = ${req.params.id};`;
+});
 
-    db.query(qry, [data], (err) => {
-      if (err) throw err;
+// Fetch user
+userRouter.get('/:id', async (req, res) => {
+    try {
+        await users.fetchUser(req, res);
+    } catch (error) {
+        console.error("Failed to retrieve a user:", error);
+        res.status(500).json({ msg: 'Failed to retrieve a user' });
+    }
+});
 
-      res.json({
-        status: res.statusCode,
-        msg: "User updated!",
-      });
-    });
-  }
+// Update user
+userRouter.patch('/update/:id', bodyParser.json(), async (req, res) => {
+    try {
+        await users.updateUser(req, res); // Call the updateUser function from the users instance
+    } catch (error) {
+        console.error("Update failed:", error);
+        res.status(500).json({ msg: 'Update failed' });
+    }
+});
 
-  login(req, res) {
-    const { emailAdd, userPwd } = req.body;
-    const qry = `SELECT uuserID,firstName,lastName,email,password
-    FROM users
-  WHERE emailAdd='${emailAdd}'`;
+// Add a user
+userRouter.post('/register', bodyParser.json(), async (req, res) => {
+    try {
+        await users.createUser(req, res);
+    } catch (error) {
+        console.error("Failed to add new user:", error);
+        res.status(500).json({ msg: 'Failed to add new user' });
+    }
+});
 
-    db.query(qry, async (err, result) => {
-      if (err) throw err;
-      if (!result?.length) {
-        res.json({
-          status: res.statusCode,
-          msg: "You provided a wrong email address",
-        });
-      } else {
-        const validPass = await compare(userPwd, result[0].userPwd);
-        if (validPass) {
-          const token = createToken({
-            emailAdd,
-            userPwd,
-          });
-          res.json({
-            status: res.statusCode,
-            msg: "You logged in",
-            result,
-          });
-        } else {
-          res.json({
-            status: res.statusCode,
-            msg: "Please provide correct password",
-            result,
-          });
-        }
-      }
-    });
-  }
-}
-export { Users };
+// Delete users
+userRouter.delete('/deleteUsers', async (req, res) => {
+    try {
+        await users.deleteUsers(req, res);
+    } catch (error) {
+        console.error("Failed to delete users:", error);
+        res.status(500).json({ msg: 'Failed to delete users' });
+    }
+});
+
+// Delete a user
+userRouter.delete('/delete/:id', async (req, res) => {
+    try {
+        await users.deleteUser(req, res);
+    } catch (error) {
+        console.error("Failed to delete a user:", error);
+        res.status(500).json({ msg: 'Failed to delete a user' });
+    }
+});
+
+// Login
+userRouter.post('/login', async (req, res) => {
+    try {
+        await users.login(req, res);
+    } catch (error) {
+        console.error("Failed to login:", error);
+        res.status(500).json({ msg: 'Failed to login' });
+    }
+});
+
+export { userRouter, express };
