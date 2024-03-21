@@ -35,58 +35,50 @@
         <h1>Meet the team</h1>
       </div>
       <div class="row text-center">
-        <div class="col-xl-3 col-sm-6 mb-5">
+        <div class="col-xl-3 col-sm-6 mb-5 animate__animated animate__slideInDown">
           <div class="bg-white rounded shadow-sm py-5 px-4 card-item">
-            <img src="https://i.ibb.co/sFCCP6T/cap-nimmie.jpg" alt="" width="100" class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">
+            <img src="https://i.ibb.co/sFCCP6T/cap-nimmie.jpg" alt="" width="100" class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm animate__animated animate__pulse">
             <h5 class="mb-0">Haanim Pietersen</h5>
             <span class="small text-uppercase text-muted">Founder</span>
             <ul class="social mb-0 list-inline mt-3">
-              <li class="list-inline-item"><a href="#" class="social-link"><i class="fa fa-facebook-f"></i></a></li>
-              <li class="list-inline-item"><a href="#" class="social-link"><i class="fa fa-twitter"></i></a></li>
-              <li class="list-inline-item"><a href="#" class="social-link"><i class="fa fa-instagram"></i></a></li>
-              <li class="list-inline-item"><a href="#" class="social-link"><i class="fa fa-linkedin"></i></a></li>
+              <li class="list-inline-item"><a href="https://github.com/HaanimP" class="social-link" target="_blank"><i class="fa-brands fa-github"></i></a></li>
+              <li class="list-inline-item"><a href="https://za.linkedin.com/in/haanim-pietersen-172bb9264" class="social-link" target="_blank"><i class="fa-brands fa-linkedin"></i></a></li>
             </ul>
           </div>
         </div>
 
-        <div class="col-xl-3 col-sm-6 mb-5">
+        <div class="col-xl-3 col-sm-6 mb-5 animate__animated animate__slideInRight">
           <div class="bg-white rounded shadow-sm py-5 px-4 card-item">
-            <img src="https://i.ibb.co/8X52RkL/cap-image-aaks.jpg" alt="" width="100" class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">
+            <img src="https://i.ibb.co/8X52RkL/cap-image-aaks.jpg" alt="" width="100" class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm animate__animated animate__pulse">
             <h5 class="mb-0">Aakeefah Jones</h5>
             <span class="small text-uppercase text-muted">Co-Founder</span>
             <ul class="social mb-0 list-inline mt-3">
-              <li class="list-inline-item"><a href="#" class="social-link"><i class="fa fa-facebook-f"></i></a></li>
-              <li class="list-inline-item"><a href="#" class="social-link"><i class="fa fa-twitter"></i></a></li>
-              <li class="list-inline-item"><a href="#" class="social-link"><i class="fa fa-instagram"></i></a></li>
-              <li class="list-inline-item"><a href="#" class="social-link"><i class="fa fa-linkedin"></i></a></li>
+              <li class="list-inline-item"><a href="https://github.com/keeefles" class="social-link" target="_blank"><i class="fa-brands fa-github"></i></a></li>
+              <li class="list-inline-item"><a href="https://www.linkedin.com/in/aakeefah-jones-b11297263?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" class="social-link" target="_blank"><i class="fa-brands fa-linkedin"></i></a></li>
             </ul>
           </div>
         </div>
 
-        <div class="col-xl-3 col-sm-6 mb-5">
+        <div class="col-xl-3 col-sm-6 mb-5 animate__animated animate__slideInLeft">
           <div class="bg-white rounded shadow-sm py-5 px-4 card-item">
-            <img src="https://i.ibb.co/TPCQbSK/cap-image-ams.jpg" alt="" width="100" class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">
+            <img src="https://i.ibb.co/TPCQbSK/cap-image-ams.jpg" alt="" width="100" class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm animate__animated animate__pulse">
             <h5 class="mb-0">Ammara Hoosen</h5>
             <span class="small text-uppercase text-muted">Co-Founder</span>
             <ul class="social mb-0 list-inline mt-3">
-              <li class="list-inline-item"><a href="#" class="social-link"><i class="fa fa-facebook-f"></i></a></li>
-              <li class="list-inline-item"><a href="#" class="social-link"><i class="fa fa-twitter"></i></a></li>
-              <li class="list-inline-item"><a href="#" class="social-link"><i class="fa fa-instagram"></i></a></li>
-              <li class="list-inline-item"><a href="#" class="social-link"><i class="fa fa-linkedin"></i></a></li>
+              <li class="list-inline-item"><a href="https://github.com/Itsssammara" class="social-link" target="_blank"><i class="fa-brands fa-github"></i></a></li>
+              <li class="list-inline-item"><a href="http://www.linkedin.com/in/ammara-hoosen-364913288" class="social-link" target="_blank"><i class="fa-brands fa-linkedin"></i></a></li>
             </ul>
           </div>
         </div>
 
-        <div class="col-xl-3 col-sm-6 mb-5">
+        <div class="col-xl-3 col-sm-6 mb-5 animate__animated animate__slideInUp">
           <div class="bg-white rounded shadow-sm py-5 px-4 card-item">
-            <img src="https://i.ibb.co/2Wzy1hj/cap-image-nish.png" alt="" width="100" class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">
+            <img src="https://i.ibb.co/2Wzy1hj/cap-image-nish.png" alt="" width="100" class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm animate__animated animate__pulse">
             <h5 class="mb-0">Nishaat Gafieldien</h5>
             <span class="small text-uppercase text-muted">Co-Founder</span>
             <ul class="social mb-0 list-inline mt-3">
-              <li class="list-inline-item"><a href="#" class="social-link"><i class="fa fa-facebook-f"></i></a></li>
-              <li class="list-inline-item"><a href="#" class="social-link"><i class="fa fa-twitter"></i></a></li>
-              <li class="list-inline-item"><a href="#" class="social-link"><i class="fa fa-instagram"></i></a></li>
-              <li class="list-inline-item"><a href="#" class="social-link"><i class="fa fa-linkedin"></i></a></li>
+              <li class="list-inline-item"><a href="https://github.com/n0tnish" class="social-link" target="_blank"><i class="fa-brands fa-github"></i></a></li>
+              <li class="list-inline-item"><a href="https://www.linkedin.com/in/ni-shaat-gafieldien-159040227" class="social-link" target="_blank"><i class="fa-brands fa-linkedin"></i></a></li>
             </ul>
           </div>
         </div>
@@ -100,6 +92,7 @@
 <script>
 import NavbarComp from "@/components/NavbarComp.vue";
 import FooterComponent from "@/components/FooterComp.vue";
+import 'animate.css';
 
 export default {
   name: "AboutViewComp",
