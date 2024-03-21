@@ -1,34 +1,55 @@
 import {connection as db} from "../config/index.js"
 class Cart {
-  fetchCart(userId, res) {
-      const qry = `SELECT * FROM cart WHERE userId = ?`;
-      db.query(qry, userId, (err, results) => {
-          if (err) {
-              console.error("Error fetching cart:", err);
-              return res.status(500).json({ error: "Failed to fetch cart" });
-          }
-          res.json({
-              status: res.statusCode,
-              cart: results
-          });
+  fetchCart(req, res) {
+    const qry = `
+      SELECT cartID, userID, prodID, quantity
+      FROM cart;`;
+    db.query(qry, (err, results) => {
+      if (err) throw err;
+      res.json({
+        status: res.statusCode,
+        results
       });
+    });
   }
 
-  deleteItemFromCart(userId, itemId, res) {
-      const qry = `DELETE FROM cart WHERE userId = ? AND itemId = ?`;
-      db.query(qry, [userId, itemId], (err, result) => {
-          if (err) {
-              console.error("Error deleting item from cart:", err);
-              return res.status(500).json({ error: "Failed to delete item from cart" });
-          }
-          console.log("Item deleted from cart successfully");
-          res.json({
-              status: res.statusCode,
-              msg: "Item deleted from cart!"
-          });
+  fetchCartById(req, res) {
+    const prodID = db.escape(req.params.id);
+    const qry = `
+      SELECT cartID, userID, prodID, quantity
+      FROM cart
+      WHERE prodID=${prodID};`;
+    db.query(qry, (err, result) => {
+      if (err) throw err;
+      res.json({
+        status: res.statusCode,
+        result: result[0]
       });
+    });
+  }
+
+  deleteCart(req, res) {
+    const qry = `DELETE FROM cart;`;
+    db.query(qry, (err) => {
+      if (err) throw err;
+      res.json({
+        status: res.statusCode,
+        msg: 'All products were deleted from cart!'
+      });
+    });
+  }
+
+  deleteCartItem(req, res) {
+    const prodID = db.escape(req.params.id);
+    const qry = `DELETE FROM cart WHERE prodID=${prodID};`;
+    db.query(qry, (err) => {
+      if (err) throw err;
+      res.json({
+        status: res.statusCode,
+        msg: 'Product was deleted from cart!'
+      });
+    });
   }
 }
-export{
-   Cart
-}
+
+export { Cart };
