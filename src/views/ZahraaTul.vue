@@ -20,15 +20,15 @@
         <!-- Card Section -->
         <div class="card">
           <div class="card-body d-flex flex-row align-items-center">
-            <img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-8.jpg" class="rounded-circle me-3" height="50px"
+            <img src="https://i.ibb.co/8X52RkL/cap-image-aaks.jpg" class="rounded-circle me-3" height="50px"
               width="50px" alt="avatar" />
             <div>
-              <h5 class="card-title font-weight-bold mb-2">New Spicy Meals</h5>
+              <h5 class="card-title font-weight-bold mb-2">Words for the soul</h5>
               <p class="card-text"><i class="far fa-clock pe-2"></i>07/24/2018</p>
             </div>
           </div>
           <div class="bg-image hover-overlay ripple rounded-0">
-            <img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Horizontal/Food/full page/2.jpg"
+            <img class="img-fluid" src="https://i.ibb.co/3By4h8T/aaks.png"
               alt="Card image cap" />
             <a href="#!">
               <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
