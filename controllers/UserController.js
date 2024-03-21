@@ -27,7 +27,7 @@ userRouter.get('/:id', async (req, res) => {
 // Update user
 userRouter.patch('/update/:id', bodyParser.json(), async (req, res) => {
     try {
-        await users.updateUser(req, res);
+        await users.updateUser(req, res); // Call the updateUser function from the users instance
     } catch (error) {
         console.error("Update failed:", error);
         res.status(500).json({ msg: 'Update failed' });
