@@ -91,9 +91,9 @@ class Users {
       data.userPwd = await hash(data?.userPwd, 8);
     }
     const qry = `
-  UPDATE users 
-  SET ?
-  WHERE userID = ${req.params.id};`;
+      UPDATE users 
+      SET ?
+      WHERE userID = ${req.params.id};`;
 
     db.query(qry, [data], (err) => {
       if (err) throw err;
