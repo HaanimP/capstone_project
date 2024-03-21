@@ -26,8 +26,9 @@ userRouter.get('/:id', async (req, res) => {
 
 // Update user
 userRouter.patch('/update/:id', bodyParser.json(), async (req, res) => {
+    const userId = req.params.id; // Extract user ID from request parameters
     try {
-        await users.updateUser(req, res); // Call the updateUser function from the users instance
+        await users.updateUser(userId, req.body, res); // Pass the user ID to updateUser method
     } catch (error) {
         console.error("Update failed:", error);
         res.status(500).json({ msg: 'Update failed' });
