@@ -87,20 +87,19 @@ export default createStore({
       }
     },
     // After successful login, store the user information in Vuex store or local storage
-// This code should be in your login action or component
-async login({ commit }, { email, password }) {
-  try {
-    const response = await axios.post(`${haanimsURL}/users/login`, { email, password });
-    const { token, user } = response.data;
-    commit('setToken', token);
-    commit('setUser', user);
-    console.log('Login successful:', user);
-    return { success: true, msg: 'Login successful' };
-  } catch (error) {
-    console.error('Login error:', error);
-    return { success: false, msg: 'Login failed. Please check your credentials and try again.' };
-  }
-},
+    async login({ commit }, { email, password }) {
+      try {
+        const response = await axios.post(`${haanimsURL}/users/login`, { email, password });
+        const { token, user } = response.data;
+        commit('setToken', token); // Set the token in the store
+        commit('setUser', user); // Set the user in the store
+        console.log('Login successful:', user);
+        return { success: true, msg: 'Login successful' };
+      } catch (error) {
+        console.error('Login error:', error);
+        return { success: false, msg: 'Login failed. Please check your credentials and try again.' };
+      }
+    },
     logout({ commit }) {
       commit('logout');
     },
