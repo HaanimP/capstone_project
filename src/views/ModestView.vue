@@ -17,7 +17,7 @@
     </div>
   </div>
       <div class="row">
-        <div class="col-md-4 mb-4" v-for="(image, index) in images" :key="index">
+        <div class="col-md-4 mb-4 animate__animated animate__lightSpeedInRight" v-for="(image, index) in images" :key="index">
           <div class="profile-card-2">
             <img :src="image.url" alt="Profile Image">
             <div class="profile-info">
@@ -42,6 +42,7 @@
   <script>
 import NavbarComp from "@/components/NavbarComp.vue";
 import FooterComponent from "@/components/FooterComp.vue";
+import 'animate.css';
 
 export default {
   name: "ModestView",
