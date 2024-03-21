@@ -74,7 +74,7 @@
         </div>
       </div>
     </div>
-  </div><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+  </div><!-- <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br> -->
   <FooterComponent/>
 </template>
 
@@ -127,8 +127,7 @@ export default {
 
 <style scoped>
 .background {
-  background: #ffe5b4;
-  height: 800px;
+  height: 240vh;
   background-size: cover;
   background-blend-mode: soft-light;
   background-position: center center;
@@ -190,5 +189,17 @@ table {
 .bigger-text {
   font-size: 18px;
   font-weight: bold; /* Added bold text */
+}
+
+@media screen and (max-width: 768px) {
+  .background {
+    height: 260vh; /* Adjusted height for smaller screens */
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .background {
+    height: 135vh; /* Adjusted height for tablet-sized screens */
+  }
 }
 </style>
