@@ -42,6 +42,7 @@
 <script>
 import NavbarComp from '@/components/NavbarComp.vue';
 import FooterComp from '@/components/FooterComp.vue';
+import { mapState } from 'vuex';
 
 export default {
   name: 'ProfileView',
@@ -50,9 +51,7 @@ export default {
     FooterComp
   },
   computed: {
-    user() {
-      return JSON.parse(localStorage.getItem('user')); // Retrieve user information from localStorage
-    }
+  ...mapState(['user']), // Use mapState to map the 'user' state from Vuex store
   }
 }
 </script>
