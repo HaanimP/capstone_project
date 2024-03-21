@@ -18,7 +18,7 @@
 
       <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 justify-content-center">
         <template v-if="filteredProducts">
-          <Card class="card m-2" style="width: 16rem;" v-for="product in filteredProducts" :key="product.products_id">
+          <Card class="card m-2 animate__animated animate__jackInTheBox" style="width: 16rem;" v-for="product in filteredProducts" :key="product.products_id">
             <!-- Card content here -->
             <template #cardImgTop>
               <img class="card-img-top" style="height: 200px;" :src="product.prodUrl" :alt="product.prodName"/>
@@ -48,6 +48,8 @@ import NavbarComp from "@/components/NavbarComp.vue";
 import Card from "@/components/Card.vue";
 import Spinner from "@/components/Spinner.vue";
 import FooterComponent from "@/components/FooterComp.vue";
+import 'animate.css';
+
 
 export default {
   name: "ProductsComp",

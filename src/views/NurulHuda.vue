@@ -25,7 +25,7 @@ With her dedication to learning, her commitment to her faith, and her passion fo
   </div>
 </div><br>
 <div class="row">
-    <div class="col-lg-4">
+    <div class="col-lg-4 animate__animated animate__lightSpeedInLeft">
         <div class="card card-margin">
             <div class="card-header no-border">
                 <h5 class="card-title">MOM</h5>
@@ -54,7 +54,7 @@ With her dedication to learning, her commitment to her faith, and her passion fo
             </div>
         </div>
     </div>
-    <div class="col-lg-4">
+    <div class="col-lg-4 animate__animated animate__lightSpeedInLeft">
         <div class="card card-margin">
             <div class="card-header no-border">
                 <h5 class="card-title">MOM</h5>
@@ -83,7 +83,7 @@ With her dedication to learning, her commitment to her faith, and her passion fo
             </div>
         </div>
     </div>
-    <div class="col-lg-4">
+    <div class="col-lg-4 animate__animated animate__lightSpeedInLeft">
         <div class="card card-margin">
             <div class="card-header no-border">
                 <h5 class="card-title">MOM</h5>
@@ -113,7 +113,7 @@ With her dedication to learning, her commitment to her faith, and her passion fo
         </div>
     </div>
     <div class="row">
-            <div class="col-lg-4">
+            <div class="col-lg-4 animate__animated animate__lightSpeedInLeft">
                 <div class="card card-margin">
                     <div class="card-header no-border">
                         <h5 class="card-title">MOM</h5>
@@ -142,7 +142,7 @@ With her dedication to learning, her commitment to her faith, and her passion fo
                 </div>
             </div>
             <!-- Repeat for the other two cards -->
-            <div class="col-lg-4">
+            <div class="col-lg-4 animate__animated animate__lightSpeedInLeft">
         <div class="card card-margin">
             <div class="card-header no-border">
                 <h5 class="card-title">MOM</h5>
@@ -171,7 +171,7 @@ With her dedication to learning, her commitment to her faith, and her passion fo
             </div>
         </div>
     </div>
-    <div class="col-lg-4">
+    <div class="col-lg-4 animate__animated animate__lightSpeedInLeft">
         <div class="card card-margin">
             <div class="card-header no-border">
                 <h5 class="card-title">MOM</h5>
@@ -211,6 +211,7 @@ With her dedication to learning, her commitment to her faith, and her passion fo
 <script>
 import NavbarComp from "@/components/NavbarComp.vue";
 import FooterComponent from "@/components/FooterComp.vue";
+import 'animate.css';
 
 export default {
   name: "NurulHuda",

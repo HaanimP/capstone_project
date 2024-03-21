@@ -1,6 +1,6 @@
 <template>
   <NavbarComp />
-  <div class="row d-flex justify-content-center mt-5">
+  <div class="row d-flex justify-content-center mt-5 animate__animated animate__zoomIn">
     <div v-if="product" class="ProdCont">
       <div class="card card-body justify-content-between boxx">
         <div class="text-center">
@@ -39,6 +39,7 @@
 import NavbarComp from '@/components/NavbarComp.vue';
 import Spinner from '@/components/Spinner.vue';
 import FooterComponent from '@/components/FooterComp.vue';
+import 'animate.css';
 
 export default {
   name: 'ProductView',
