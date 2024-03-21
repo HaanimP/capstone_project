@@ -136,11 +136,12 @@ async login({ commit }, { email, password }) {
       }
     },
     
-    async updateUser(context, payload) {
+    async updateUser({ dispatch }, payload) {
       try {
-        const { msg } = await axios.patch(`${haanimsURL}/users/update/${payload.id}`, payload);
+        const response = await axios.patch(`${haanimsURL}/users/update/${payload.id}`, payload);
+        const { msg } = response.data;
         if (msg) {
-          context.dispatch('fetchUsers');
+          dispatch('fetchUsers'); // Fetch updated list of users after updating
           sweet({
             title: 'Update user',
             text: msg,
@@ -148,16 +149,17 @@ async login({ commit }, { email, password }) {
             timer: 2000
           });
         }
-      } catch (e) {
+        return { success: true, msg };
+      } catch (error) {
         sweet({
           title: 'Error',
           text: 'An error occurred when updating a user.',
-          icon: "success",
+          icon: "error",
           timer: 2000
         });
+        return { success: false, msg: 'An error occurred when updating a user.' };
       }
-    },
-    
+    },       
     async deleteUser(context, payload) {
       try {
         const { msg } = await axios.delete(`${haanimsURL}/users/${payload.id}`);
