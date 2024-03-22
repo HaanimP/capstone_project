@@ -2,9 +2,9 @@
     <div>
       <div class="d-flex justify-content-center">
         <div class="spinner">
-          <div class="bounce1"></div>
-          <div class="bounce2"></div>
-          <div class="bounce3"></div>
+          <div class="bounce1"><i class="fa-solid fa-person-dress-burst"></i></div>
+          <div class="bounce2"><i class="fa-solid fa-person-dress-burst"></i></div>
+          <div class="bounce3"><i class="fa-solid fa-person-dress-burst"></i></div>
         </div>
       </div>
     </div>
@@ -25,7 +25,6 @@
   .spinner > div {
     width: 18px;
     height: 18px;
-    background-color: #007bff;
     
     border-radius: 100%;
     display: inline-block;
