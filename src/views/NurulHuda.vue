@@ -26,116 +26,77 @@ With her dedication to learning, her commitment to her faith, and her passion fo
 </div><br>
 <div class="row">
     <div class="col-lg-4 animate__animated animate__lightSpeedInLeft">
-        <div class="card card-margin">
-            <div class="card-header no-border">
-                <h5 class="card-title">MOM</h5>
-            </div>
-            <div class="card-body pt-0">
-                <div class="widget-49">
-                    <div class="widget-49-title-wrapper">
-                        <div class="widget-49-date-primary">
-                            <span class="widget-49-date-day">09</span>
-                            <span class="widget-49-date-month">apr</span>
-                        </div>
-                        <div class="widget-49-meeting-info">
-                            <span class="widget-49-pro-title">PRO-08235 DeskOpe. Website</span>
-                            <span class="widget-49-meeting-time">12:00 to 13.30 Hrs</span>
-                        </div>
-                    </div>
-                    <ol class="widget-49-meeting-points">
-                        <li class="widget-49-meeting-item"><span>Expand module is removed</span></li>
-                        <li class="widget-49-meeting-item"><span>Data migration is in scope</span></li>
-                        <li class="widget-49-meeting-item"><span>Session timeout increase to 30 minutes</span></li>
-                    </ol>
-                    <div class="widget-49-meeting-action">
-                        <a href="#" class="btn btn-sm btn-flash-border-primary">View All</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-lg-4 animate__animated animate__lightSpeedInLeft">
-        <div class="card card-margin">
-            <div class="card-header no-border">
-                <h5 class="card-title">MOM</h5>
-            </div>
-            <div class="card-body pt-0">
-                <div class="widget-49">
-                    <div class="widget-49-title-wrapper">
-                        <div class="widget-49-date-warning">
-                            <span class="widget-49-date-day">13</span>
-                            <span class="widget-49-date-month">apr</span>
-                        </div>
-                        <div class="widget-49-meeting-info">
-                            <span class="widget-49-pro-title">PRO-08235 Lexa Corp.</span>
-                            <span class="widget-49-meeting-time">12:00 to 13.30 Hrs</span>
-                        </div>
-                    </div>
-                    <ol class="widget-49-meeting-points">
-                        <li class="widget-49-meeting-item"><span>Scheming module is removed</span></li>
-                        <li class="widget-49-meeting-item"><span>App design contract confirmed</span></li>
-                        <li class="widget-49-meeting-item"><span>Client request to send invoice</span></li>
-                    </ol>
-                    <div class="widget-49-meeting-action">
-                        <a href="#" class="btn btn-sm btn-flash-border-warning">View All</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-lg-4 animate__animated animate__lightSpeedInLeft">
-        <div class="card card-margin">
-            <div class="card-header no-border">
-                <h5 class="card-title">MOM</h5>
-            </div>
-            <div class="card-body pt-0">
-                <div class="widget-49">
-                    <div class="widget-49-title-wrapper">
-                        <div class="widget-49-date-success">
-                            <span class="widget-49-date-day">22</span>
-                            <span class="widget-49-date-month">apr</span>
-                        </div>
-                        <div class="widget-49-meeting-info">
-                            <span class="widget-49-pro-title">PRO-027865 Opera module</span>
-                            <span class="widget-49-meeting-time">12:00 to 13.30 Hrs</span>
-                        </div>
-                    </div>
-                    <ol class="widget-49-meeting-points">
-                        <li class="widget-49-meeting-item"><span>Scope is revised and updated</span></li>
-                        <li class="widget-49-meeting-item"><span>Time-line has been changed</span></li>
-                        <li class="widget-49-meeting-item"><span>Received approval to start wire-frame</span></li>
-                    </ol>
-                    <div class="widget-49-meeting-action">
-                        <a href="#" class="btn btn-sm btn-flash-border-success">View All</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-            <div class="col-lg-4 animate__animated animate__lightSpeedInLeft">
                 <div class="card card-margin">
                     <div class="card-header no-border">
-                        <h5 class="card-title">MOM</h5>
+                        <h5 class="card-title">Haanim Khimar</h5>
                     </div>
                     <div class="card-body pt-0">
                         <div class="widget-49">
                             <div class="widget-49-title-wrapper">
-                                <div class="widget-49-date-primary">
-                                    <span class="widget-49-date-day">XX</span>
-                                    <span class="widget-49-date-month">XXX</span>
-                                </div>
+                                <!-- Image replaces the date/time -->
+                                <img src="https://bantik.co/cdn/shop/products/image_96bf3559-a2ad-4661-b7aa-d81aab4a064a.jpg?v=1675152874" alt="Meeting Image" class="img-fluid widget-49-image">
                                 <div class="widget-49-meeting-info">
-                                    <span class="widget-49-pro-title">PRO-XXXXX New Project</span>
-                                    <span class="widget-49-meeting-time">XX:XX to XX.XX Hrs</span>
+                                    <h4 class="widget-49-pro-title">R 10, 200.00</h4>
+                                    <p class="widget-49-meeting-time">Pink twin layered mid-length Khimar. Fastens at the back with two bands. Front: 85cm. Back: 115 cm second veil 98 cm.</p>
                                 </div>
                             </div>
-                            <ol class="widget-49-meeting-points">
-                                <li class="widget-49-meeting-item"><span>Meeting point 1</span></li>
-                                <li class="widget-49-meeting-item"><span>Meeting point 2</span></li>
-                            </ol>
-                            <div class="widget-49-meeting-action">
-                                <a href="#" class="btn btn-sm btn-flash-border-primary">View All</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 animate__animated animate__lightSpeedInLeft">
+                <div class="card card-margin">
+                    <div class="card-header no-border">
+                        <h5 class="card-title">Faatimah Khimar</h5>
+                    </div>
+                    <div class="card-body pt-0">
+                        <div class="widget-49">
+                            <div class="widget-49-title-wrapper">
+                                <!-- Image replaces the date/time -->
+                                <img src="https://bantik.co/cdn/shop/products/IMG_0904.JPG_5be6527f-3633-4770-bb18-544b26e9e16c_1080x.jpg?v=1657015912" alt="Meeting Image" class="img-fluid widget-49-image">
+                                <div class="widget-49-meeting-info">
+                                    <h4 class="widget-49-pro-title">R 10, 200.00</h4>
+                                    <p class="widget-49-meeting-time">Purple twin layered mid-length Khimar. Fastens at the back with two bands. Front: 85cm. Back: 115 cm second veil 98 cm.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    <div class="col-lg-4 animate__animated animate__lightSpeedInLeft">
+                <div class="card card-margin">
+                    <div class="card-header no-border">
+                        <h5 class="card-title">Aakeefah Khimar'</h5>
+                    </div>
+                    <div class="card-body pt-0">
+                        <div class="widget-49">
+                            <div class="widget-49-title-wrapper">
+                                <!-- Image replaces the date/time -->
+                                <img src="https://bantik.co/cdn/shop/products/image_de5456e4-d040-47a7-a5c5-6ccada76205e_720x.jpg?v=1677069326" alt="Meeting Image" class="img-fluid widget-49-image">
+                                <div class="widget-49-meeting-info">
+                                    <h4 class="widget-49-pro-title">R 10, 200.00</h4>
+                                    <p class="widget-49-meeting-time">Green twin layered mid-length Khimar. Fastens at the back with two bands. Front: 85cm. Back: 115 cm second veil 98 cm.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    <div class="row">
+        <div class="col-lg-4 animate__animated animate__lightSpeedInLeft">
+                <div class="card card-margin">
+                    <div class="card-header no-border">
+                        <h5 class="card-title">Ammara Khimar'</h5>
+                    </div>
+                    <div class="card-body pt-0">
+                        <div class="widget-49">
+                            <div class="widget-49-title-wrapper">
+                                <!-- Image replaces the date/time -->
+                                <img src="https://bantik.co/cdn/shop/products/image_d488d2da-06bd-4265-8d9d-765a525b13e9_1080x.jpg?v=1677069165" alt="Meeting Image" class="img-fluid widget-49-image">
+                                <div class="widget-49-meeting-info">
+                                    <h4 class="widget-49-pro-title">R 10, 200.00</h4>
+                                    <p class="widget-49-meeting-time">Light blue twin layered mid-length Khimar.Fastens at the back with two bands. Front: 85cm. Back: 115 cm second veil 98 cm.</p>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -143,63 +104,43 @@ With her dedication to learning, her commitment to her faith, and her passion fo
             </div>
             <!-- Repeat for the other two cards -->
             <div class="col-lg-4 animate__animated animate__lightSpeedInLeft">
-        <div class="card card-margin">
-            <div class="card-header no-border">
-                <h5 class="card-title">MOM</h5>
-            </div>
-            <div class="card-body pt-0">
-                <div class="widget-49">
-                    <div class="widget-49-title-wrapper">
-                        <div class="widget-49-date-warning">
-                            <span class="widget-49-date-day">13</span>
-                            <span class="widget-49-date-month">apr</span>
-                        </div>
-                        <div class="widget-49-meeting-info">
-                            <span class="widget-49-pro-title">PRO-08235 Lexa Corp.</span>
-                            <span class="widget-49-meeting-time">12:00 to 13.30 Hrs</span>
-                        </div>
+                <div class="card card-margin">
+                    <div class="card-header no-border">
+                        <h5 class="card-title">Navy Blue Prayer Mat</h5>
                     </div>
-                    <ol class="widget-49-meeting-points">
-                        <li class="widget-49-meeting-item"><span>Scheming module is removed</span></li>
-                        <li class="widget-49-meeting-item"><span>App design contract confirmed</span></li>
-                        <li class="widget-49-meeting-item"><span>Client request to send invoice</span></li>
-                    </ol>
-                    <div class="widget-49-meeting-action">
-                        <a href="#" class="btn btn-sm btn-flash-border-warning">View All</a>
+                    <div class="card-body pt-0">
+                        <div class="widget-49">
+                            <div class="widget-49-title-wrapper">
+                                <!-- Image replaces the date/time -->
+                                <img src="https://i.pinimg.com/564x/80/7a/37/807a3783cf3e3b2e963722303d8f4e44.jpg" alt="Meeting Image" class="img-fluid widget-49-image">
+                                <div class="widget-49-meeting-info">
+                                    <h4 class="widget-49-pro-title">R 150.00</h4>
+                                    <p class="widget-49-meeting-time">Navy Blue Smooth textured prayer mat. The perfect companion when traveling to ensure salaah is made on time. No more missing salaah due to being on the road.</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-    <div class="col-lg-4 animate__animated animate__lightSpeedInLeft">
-        <div class="card card-margin">
-            <div class="card-header no-border">
-                <h5 class="card-title">MOM</h5>
-            </div>
-            <div class="card-body pt-0">
-                <div class="widget-49">
-                    <div class="widget-49-title-wrapper">
-                        <div class="widget-49-date-success">
-                            <span class="widget-49-date-day">22</span>
-                            <span class="widget-49-date-month">apr</span>
-                        </div>
-                        <div class="widget-49-meeting-info">
-                            <span class="widget-49-pro-title">PRO-027865 Opera module</span>
-                            <span class="widget-49-meeting-time">12:00 to 13.30 Hrs</span>
-                        </div>
+            <div class="col-lg-4 animate__animated animate__lightSpeedInLeft">
+                <div class="card card-margin">
+                    <div class="card-header no-border">
+                        <h5 class="card-title">Purple Prayer Mat</h5>
                     </div>
-                    <ol class="widget-49-meeting-points">
-                        <li class="widget-49-meeting-item"><span>Scope is revised and updated</span></li>
-                        <li class="widget-49-meeting-item"><span>Time-line has been changed</span></li>
-                        <li class="widget-49-meeting-item"><span>Received approval to start wire-frame</span></li>
-                    </ol>
-                    <div class="widget-49-meeting-action">
-                        <a href="#" class="btn btn-sm btn-flash-border-success">View All</a>
+                    <div class="card-body pt-0">
+                        <div class="widget-49">
+                            <div class="widget-49-title-wrapper">
+                                <!-- Image replaces the date/time -->
+                                <img src="https://cdn11.bigcommerce.com/s-1dyb0quqmo/images/stencil/1280x1280/products/266/1846/20240304_132108__59525.1709545626.jpg?c=1" alt="Meeting Image" class="img-fluid widget-49-image">
+                                <div class="widget-49-meeting-info">
+                                    <h4 class="widget-49-pro-title">R 150.00</h4>
+                                    <p class="widget-49-meeting-time">Purple Smooth textured prayer mat. The perfectcompanion when traveling to ensure salaah is made on time. No more missing salaah due to being on the road.</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
         </div>
     </div>
 </div>
@@ -247,18 +188,18 @@ body {
 
 
 .nurul-huda-intro h2 {
-    font-size: 3rem; /* Increase size */
-    font-weight: 800; /* Increase boldness */
-    margin-bottom: 1rem; /* Adjust spacing as needed */
-    color: #FFF; /* Set text color to white */
+    font-size: 3rem; 
+    font-weight: 800; 
+    margin-bottom: 1rem; 
+    color: #FFF; 
 }
 
 .nurul-huda-intro p {
-    font-size: 1.5rem; /* Increase size */
-    font-weight: 500; /* Make text bolder */
-    color: #FFF; /* Set text color to white */
-    max-width: 800px; /* Limit the width for better readability */
-    margin: 0 auto 2rem; /* Center the description and add bottom margin */
+    font-size: 1.5rem; 
+    font-weight: 500; 
+    color: #FFF; 
+    max-width: 800px; 
+    margin: 0 auto 2rem; 
 }
 
 .col-lg-6 img {
@@ -273,86 +214,60 @@ body {
 
 .card {
     border: 0;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.15);
+    border-radius: 10px;
     background-color: #ffffff;
+    overflow: hidden; 
+    transition: transform 0.3s ease, box-shadow 0.3s ease; 
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 30px rgba(0, 0, 0, 0.2);
 }
 
 .card-header {
     background: none;
-    border-bottom: 1px solid #f0f0f0;
-    padding: 0.9375rem;
+    border-bottom: 2px solid #eee;
+    padding: 1rem;
 }
 
 .card-title {
-    font-weight: 600;
-    font-size: 1.25rem;
-    color: #333;
+    font-weight: 800;
+    font-size: 2rem; 
+    color: #444; 
+    margin-bottom: 0.5rem; 
 }
 
-.widget-49-date-primary, .widget-49-date-warning, .widget-49-date-success {
-    background: linear-gradient(135deg, #6394f9 0%, #0a568c 100%);
-    color: #ffffff;
+.widget-49-meeting-info h4 {
+    font-weight: 700; 
+    font-size:1.7rem;
+    color: #333; 
+    margin-bottom: 0.25rem; 
 }
 
-.widget-49-date-warning {
-    background: linear-gradient(135deg, #f9d976 0%, #f39f86 100%);
+.widget-49-meeting-info p {
+    font-weight: 700; 
+    font-size: 1.5rem; 
+    color: #555; 
+    line-height: 1.5; 
 }
 
-.widget-49-date-success {
-    background: linear-gradient(135deg, #93f9b9 0%, #1d976c 100%);
-}
-
-.widget-49-date-day, .widget-49-date-month {
-    font-weight: 600;
-}
-
-.widget-49-meeting-info span {
-    display: block;
-    color: #333;
-    margin: 5px 0;
-}
-
-.widget-49-pro-title {
-    font-weight: 600;
-    font-size: 1rem;
-}
-
-.widget-49-meeting-time {
-    font-size: 0.875rem;
-    color: #666;
-}
-
-.widget-49-meeting-item {
-    margin-bottom: 0.5rem;
+.widget-49-image {
+    width: 500px;
+    height: 500px; 
+    border-bottom: 2px solid #eee; 
+    margin-bottom: 1rem;
 }
 
 .btn-flash-border-primary, .btn-flash-border-warning, .btn-flash-border-success {
-    border: 2px solid;
-    font-weight: 600;
-    border-radius: 25px;
-    padding: 0.375rem 1.25rem;
-    transition: all 0.3s ease;
+    font-size: 1rem; 
+    padding: 0.5rem 1.5rem;
+    font-weight: 700; 
 }
 
-.btn-flash-border-primary {
-    border-color: #6394f9;
-    color: #6394f9;
-}
-
-.btn-flash-border-warning {
-    border-color: #f9d976;
-    color: #f9d976;
-}
-
-.btn-flash-border-success {
-    border-color: #93f9b9;
-    color: #93f9b9;
-}
-
-.btn-flash-border-primary:hover, .btn-flash-border-warning:hover, .btn-flash-border-success:hover {
-    background: currentColor;
-    color: #ffffff;
+.card-body {
+    padding: 1rem;
 }
 
 .see-more-btn {
@@ -369,7 +284,6 @@ body {
   background-color: #b86b77;
 }
 
-/* Responsive adjustments */
 @media (max-width: 768px) {
     .widget-49-date-primary, .widget-49-date-warning, .widget-49-date-success {
         width: 3rem;
