@@ -2,28 +2,37 @@
   <NavbarComp />
   <div class="background" id="background-video">
     <div class="text-overlay">
-      <h1 class="greeting">السلام عليكم<br>Hello</h1>
-      <h1 class="slogan">Elevate your style</h1>
+      <h1 class="greeting animate__animated animate__swing">السلام عليكم<br>Hello</h1>
+      <h1 class="slogan animate__animated animate__bounceIn">Elevate your style</h1>
     </div>
   </div>
+  <SpinnerComp v-if="videoLoading" />
   <FooterComponent/>
 </template>
 
 <script>
 import NavbarComp from '@/components/NavbarComp.vue';
 import FooterComponent from '@/components/FooterComp.vue';
+import SpinnerComp from '@/components/Spinner.vue'; 
+import 'animate.css';
 
 export default {
   name: 'HomeView',
   components: {
     NavbarComp,
-    FooterComponent
+    FooterComponent,
+    SpinnerComp 
+  },
+  data() {
+    return {
+      videoLoading: true, 
+    };
   },
   mounted() {
     const options = {
-      id: 923711458, // Background video ID
-      width: '1280', // Set the width to 1280px for a 16:9 aspect ratio
-      height: '720', // Set the height to 720px for a 16:9 aspect ratio
+      id: 923711458,
+      width: '1280',
+      height: '720',
       loop: true,
       autoplay: true,
       controls: false,
@@ -32,8 +41,10 @@ export default {
 
     const player = new Vimeo.Player('background-video', options);
     player.ready().then(() => {
+      this.videoLoading = false; // Hide spinner when video is ready
       console.log('Background video is ready');
     }).catch((error) => {
+      this.videoLoading = false; // Consider hiding spinner on error as well
       console.error('Error initializing background video:', error);
     });
   }
