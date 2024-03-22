@@ -20,7 +20,7 @@ class Cart {
   fetchCartById(req, res) {
     const prodID = db.escape(req.params.id);
     const qry = `
-      SELECT cartID, userID, prodID, quantity,prodName, productAmount
+      SELECT cartID, userID, prodID, quantity
       FROM cart
       WHERE prodID=${prodID};`;
     db.query(qry, (err, result) => {
@@ -35,7 +35,7 @@ class Cart {
   addItemToCart(req, res) {
     const { userID, prodID, quantity } = req.body;
     const qry = `
-        INSERT INTO cart (userID, prodID, quantity, prodName, productAmount)
+        INSERT INTO cart (userID, prodID, quantity)
         VALUES (?, ?, ?);
     `;
     db.query(qry, [userID, prodID, quantity], (err, result) => {
