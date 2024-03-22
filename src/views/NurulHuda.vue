@@ -145,7 +145,7 @@ With her dedication to learning, her commitment to her faith, and her passion fo
     </div>
 </div>
 <div class="text-center mb-5">
-      <button class="see-more-btn">See More</button>
+      <button class="see-more-btn"><a href="">See More</a></button>
     </div>
     <FooterComponent/>
 </template>
@@ -268,6 +268,20 @@ body {
 
 .card-body {
     padding: 1rem;
+}
+
+.see-more-btn a {
+  color: #FFF; 
+  text-decoration: none; 
+  display: inline-block;
+  width: 100%; 
+  height: 100%; 
+  line-height: normal; 
+}
+
+.see-more-btn a:hover, .see-more-btn a:focus {
+  color: #FFF; 
+  text-decoration: none; 
 }
 
 .see-more-btn {

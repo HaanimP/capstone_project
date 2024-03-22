@@ -41,8 +41,8 @@
               our juicy meals from around the world.
             </p>
             <div class="d-flex justify-content-between align-items-center">
-              <a class="btn btn-link link-danger p-md-1 my-1" data-mdb-toggle="collapse" href="#collapseContent"
-                role="button" aria-expanded="false" aria-controls="collapseContent">Read more</a>
+              <a class="btn btn-link link-danger p-md-1 my-1" data-mdb-toggle="collapse" href="https://zahraatul-islam.web.app/"
+                role="button" aria-expanded="false" aria-controls="collapseContent" target="_blank">Read more</a>
               <div>
                 <i class="fas fa-share-alt text-muted p-md-1 my-1 me-2" data-mdb-toggle="tooltip"
                   data-mdb-placement="top" title="Share this post"></i>

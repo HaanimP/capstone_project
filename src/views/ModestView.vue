@@ -34,7 +34,7 @@
       </div>
     </div>
     <div class="text-center mb-5">
-      <button class="see-more-btn">See More</button>
+      <button class="see-more-btn"><a href="https://mycapstone-bfb98.web.app/">See More</a></button>
     </div>
     <FooterComponent/>
   </template>  
@@ -171,6 +171,20 @@ export default {
   .profile-icons a:hover {
     color: #b4e1ff;
   }
+
+  .see-more-btn a {
+  color: #FFF; 
+  text-decoration: none; 
+  display: inline-block;
+  width: 100%; 
+  height: 100%; 
+  line-height: normal; 
+}
+
+.see-more-btn a:hover, .see-more-btn a:focus {
+  color: #FFF; 
+  text-decoration: none; 
+}
 
   .see-more-btn {
   background-color: #d99b6c; 
