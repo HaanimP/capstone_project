@@ -42,7 +42,6 @@
 <script>
 import NavbarComp from '@/components/NavbarComp.vue';
 import FooterComp from '@/components/FooterComp.vue';
-import { mapState } from 'vuex';
 
 export default {
   name: 'ProfileView',
@@ -50,9 +49,17 @@ export default {
     NavbarComp,
     FooterComp
   },
-  computed: {
-  ...mapState(['user']), // Use mapState to map the 'user' state from Vuex store
+  mounted() {
+  // Check if user data is already loaded in Vuex state
+  const user = this.$store.state.user;
+  if (user && user.userID) {
+    this.$store.dispatch('fetchUserProfile', user.userID);
+  } else {
+    console.error("User ID is not available. Redirecting to login page...");
+    // Redirect to login page or handle the case appropriately
+    this.$router.push('/login'); // Example redirection
   }
+}
 }
 </script>
 

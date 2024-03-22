@@ -142,6 +142,17 @@ export default createStore({
       }
     },
     
+    // In your Vuex store's actions
+    async fetchUserProfile({ commit }, userID) {
+      try {
+        const response = await axios.get(`${haanimsURL}/users/${userID}`);
+        commit('setUser', response.data.result); // Adjust based on your response structure
+      } catch (error) {
+        console.error('Failed to fetch user profile:', error);
+        // Handle error, such as redirecting to login or showing a notification
+      }
+    },
+
     async updateUser({ dispatch }, payload) {
       try {
         const response = await axios.patch(`${haanimsURL}/users/update/${payload.id}`, payload);
