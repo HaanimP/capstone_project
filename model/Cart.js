@@ -1,22 +1,26 @@
 import {connection as db} from "../config/index.js"
 class Cart {
   fetchCart(req, res) {
+    const userID = db.escape(req.params.userId);
     const qry = `
-      SELECT cartID, userID, prodID, quantity
-      FROM cart;`;
+        SELECT c.cartID, c.userID, c.prodID, c.quantity, p.prodName, p.productAmount
+        FROM cart c
+        JOIN products p ON c.prodID = p.prodID
+        WHERE c.userID=${userID};
+    `;
     db.query(qry, (err, results) => {
-      if (err) throw err;
-      res.json({
-        status: res.statusCode,
-        results
-      });
+        if (err) throw err;
+        res.json({
+            status: res.statusCode,
+            results
+        });
     });
-  }
+}
 
   fetchCartById(req, res) {
     const prodID = db.escape(req.params.id);
     const qry = `
-      SELECT cartID, userID, prodID, quantity
+      SELECT cartID, userID, prodID, quantity,prodName, productAmount
       FROM cart
       WHERE prodID=${prodID};`;
     db.query(qry, (err, result) => {
@@ -27,6 +31,21 @@ class Cart {
       });
     });
   }
+
+  addItemToCart(req, res) {
+    const { userID, prodID, quantity } = req.body;
+    const qry = `
+        INSERT INTO cart (userID, prodID, quantity, prodName, productAmount)
+        VALUES (?, ?, ?);
+    `;
+    db.query(qry, [userID, prodID, quantity], (err, result) => {
+        if (err) throw err;
+        res.json({
+            status: res.statusCode,
+            msg: 'Product added to cart!'
+        });
+    });
+}
 
   deleteCart(req, res) {
     const qry = `DELETE FROM cart;`;
