@@ -11,23 +11,23 @@
               <th>Name</th>
               <th>Price</th>
               <th>Quantity</th>
-              <th>Action</th> <!-- Column for 'Add to Cart' action -->
+              <th>Action</th>
             </tr>
           </thead>
           <tbody>
-  <tr v-if="product" :key="product.prodID">
-    <td>1</td>
-    <td><img :src="product.prodURL" :alt="product.prodName" style="max-width: 50px;"></td>
-    <td>{{ product.prodName }}</td>
-    <td>R{{ product.productAmount.toFixed(2) }}</td>
-    <td>
-      <input type="number" class="quantity-input" placeholder="Qty" min="1" v-model.number="product.quantity">
-    </td>
-    <td>
-      <button @click="addToCart(product)">Add to Cart</button>
-    </td>
-  </tr>
-</tbody>
+            <tr v-for="(item, index) in cartItems" :key="item.prodID">
+              <td>{{ index + 1 }}</td>
+              <td><img :src="item.prodURL" :alt="item.prodName" style="max-width: 50px;"></td>
+              <td>{{ item.prodName }}</td>
+              <td>R{{ item.productAmount.toFixed(2) }}</td>
+              <td>
+                <input type="number" class="quantity-input" placeholder="Qty" min="1" v-model.number="item.quantity">
+              </td>
+              <td>
+                <button @click="removeFromCart(index)">Remove</button>
+              </td>
+            </tr>
+          </tbody>
         </table>
       </main>
       <div id="totalAmount">Total Amount: R{{ totalAmount }}</div><br>
@@ -43,7 +43,8 @@
 import NavbarComp from "@/components/NavbarComp.vue";
 import FooterComponent from "@/components/FooterComp.vue";
 import axios from 'axios';
-import { mapActions } from 'vuex';
+import { mapActions, mapState } from 'vuex'; // Import mapState for accessing Vuex state
+import swal from 'sweetalert';
 
 const haanimsURL = 'https://capstone-project-h6pk.onrender.com';
 
@@ -55,49 +56,69 @@ export default {
   },
   data() {
     return {
-      product: null, // Initialize product as null
-      bought: JSON.parse(localStorage.getItem("bought")) || [],
+      // Assuming you might still need product for other functionalities
+      product: null,
     };
   },
   computed: {
+    // Use mapState if you are storing the cart items and user authentication state in Vuex
+    ...mapState(['cartItems', 'isAuthenticated', 'user']),
+    
     totalAmount() {
-      let total = 0;
-      if (this.bought && this.bought.length > 0) {
-        total = this.bought.reduce((acc, item) => {
-          const price = Number(item.productAmount) || 0;
-          const quantity = Number(item.quantity || 0);
-          return acc + price * quantity;
-        }, 0);
-      }
-      return total.toFixed(2);
+      // Compute the total amount from cartItems state
+      return this.cartItems.reduce((acc, item) => {
+        const price = Number(item.productAmount) || 0;
+        const quantity = Number(item.quantity) || 0;
+        return acc + price * quantity;
+      }, 0).toFixed(2);
     },
   },
   methods: {
-    ...mapActions(['addToCart']), // Add this line to map the addToCart action
+    // Use spread operator for mapping Vuex actions directly
+    ...mapActions(['addToCart', 'removeFromCart', 'fetchCartItems']), // Assuming these actions are defined in Vuex
+
+    async addProductToCart(product) {
+      if (!this.isAuthenticated) {
+        console.error("User not authenticated");
+        swal("Error", "You need to be logged in to add items to the cart.", "error");
+        return;
+      }
+      const userID = this.user.userID; // Adjust according to how user ID is stored
+      const { prodID, quantity } = product;
+      try {
+        await this.addToCart({ userID, prodID, quantity });
+        console.log("Product added to cart");
+        // Optionally, refresh the cart items after adding a new item
+        this.fetchCartItems(userID);
+      } catch (error) {
+        console.error('Error adding to cart:', error);
+        swal("Error", "An error occurred while adding the product to the cart.", "error");
+      }
+    },
+
     handlePayment() {
       // Handle payment logic here
     },
+
     async fetchProduct(prodID) {
       try {
         const response = await axios.get(`${haanimsURL}/products/${prodID}`);
         if (response.data) {
-          this.product = response.data; // Set the product object
+          this.product = response.data; // Adjust this line if the response structure is different
         }
       } catch (error) {
         console.error('Error fetching product:', error);
-        swal({
-          title: 'Error',
-          text: 'An error occurred when retrieving the product.',
-          icon: "error",
-          timer: 2000
-        });
+        swal("Error", "An error occurred when retrieving the product.", "error");
       }
     }
   },
   mounted() {
-    // Assuming prodID is available in your component
-    const prodID = this.$route.params.prodID; // or whatever parameter holds the product ID
-    this.fetchProduct(prodID); // Fetch product when the component is mounted
+    const prodID = this.$route.params.prodID;
+    this.fetchProduct(prodID);
+    // Optionally, if the user is logged in, fetch cart items on component mount
+    if (this.isAuthenticated) {
+      this.fetchCartItems(this.user.userID);
+    }
   },
 };
 </script>

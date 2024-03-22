@@ -50,16 +50,16 @@ export default createStore({
     setCartItems(state, items) {
       state.cartItems = items;
     },
-    addToCart(state, product) {
-      const existingProductIndex = state.cart.findIndex(item => item.prodID === product.prodID);
-      if (existingProductIndex === -1) {
-        // Product not in cart, add new entry with quantity 1
-        state.cart.push({ ...product, quantity: 1 });
-      } else {
-        // Product already in cart, increment the quantity
-        state.cart[existingProductIndex].quantity++;
+    async addToCart(context, { userID, prodID, quantity }) {
+      try {
+          await axios.post(`${haanimsURL}/cart/add`, { userID, prodID, quantity });
+          // Optionally fetch cart items again to update the UI
+          context.dispatch('fetchCartItems', userID);
+      } catch (error) {
+          console.error('Error adding to cart:', error);
+          // Handle error (e.g., show a notification)
       }
-    },
+  },
     removeFromCart(state, index) {
       state.cartItems.splice(index, 1);
     },
@@ -274,8 +274,27 @@ export default createStore({
     },
     addToCart({ commit }, product) {
       commit('addToCart', product);
+    },
+    async addToCart(context, { userID, prodID, quantity, prodName, productAmount }) {
+      try {
+          await axios.post(`${haanimsURL}/cart/add`, { userID, prodID, quantity, prodName, productAmount });
+          // Optionally fetch cart items again to update the UI
+          context.dispatch('fetchCartItems', userID);
+      } catch (error) {
+          console.error('Error adding to cart:', error);
+          // Handle error (e.g., show a notification)
+      }
+  },
+  async fetchCartItems(context, userID) {
+    try {
+        const response = await axios.get(`${haanimsURL}/cart/${userID}`);
+        context.commit('setCartItems', response.data.results);
+    } catch (error) {
+        console.error('Error fetching cart items:', error);
+        // Handle error
     }
   },
+},
   modules: {
   }, 
 })
