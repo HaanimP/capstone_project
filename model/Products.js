@@ -66,19 +66,24 @@ deleteProduct(req, res) {
  });
 }
 
- updateProduct(req,res){
-   const qry=`UPDATE products SET ? WHERE prodID=${req.params.id};`
- 
-   db.query(qry, [req.body], (err)=>{
-     if(err) throw err
-     
-     res.json({
-       status: res.statusCode,
-       msg:'Product is updated!'
-     })
- 
-   })
- }
+updateProduct(req, res) {
+  // Assuming req.body contains the data to update and all fields are correctly named as in the database
+  const qry = `UPDATE products SET ? WHERE prodID = ?;`;
+  const dataToUpdate = req.body;
+  const prodId = req.params.id;
+
+  db.query(qry, [dataToUpdate, prodId], (err) => {
+      if (err) {
+          console.error(err);
+          return res.status(500).json({ msg: 'Failed to update product' });
+      }
+      res.json({
+          status: res.statusCode,
+          msg: 'Product is updated!'
+      });
+  });
+}
+
 
 
 }
